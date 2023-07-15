@@ -2,37 +2,33 @@ import java.util.ArrayList;
 
 public class Materia {
 
-    //ATRIBUTOS
     private String codigo;
     private String nombre;
-    private int niveles;
+    private String niveles;
     private ArrayList<Paralelo> paralelo;
     private ArrayList<Pregunta> preguntas;
 
-    //CONSTRUCTOR
-    public Materia(String codigo, String nombre, int niveles){
+    public Materia(String codigo, String nombre, String niveles){
         this.codigo = codigo;
         this.nombre = nombre;
         this.niveles = niveles;
+        paralelo = new ArrayList<Paralelo>();
+        preguntas = new ArrayList<Pregunta>();
     }
 
-    //GETTERS
     public String getCodigo() { return codigo; }
     public String getNombre() { return nombre; }
-    public int getNiveles() { return niveles; }
+    public String getNiveles() { return niveles; }
+    public ArrayList<Pregunta> getPreguntas() {return preguntas;}
+    public ArrayList<Paralelo> getParalelo() {return paralelo;}
 
-    //SETTERS
+
     public void setCodigo(String codigo) { this.codigo = codigo; }
     public void setNombre(String nombre) { this.nombre = nombre; }
-    public void setNiveles(int niveles) { this.niveles = niveles; }
+    public void setNiveles(String niveles) { this.niveles = niveles; }
 
-    //MÉTODOS SOBRE LAS PREGUNTAS QUE CONTIENE CADA MATERIA
-    public void visualizarPreguntas(){
-        int i = 1;
-        for(Pregunta preg : preguntas){
-            System.out.println(i + ". " + preg.getEnunciado());
-            i++;
-        }
+    public void agregarParalelo(String termino, String num, ArrayList<Participante> estudiantes){
+        paralelo.add(new Paralelo(termino, num, estudiantes));
     }
 
     public void agregarPreguntas(String enunciado, int nivel, String respuestaCorrecta, ArrayList<String> respuestasIncorrectas){
@@ -44,4 +40,18 @@ public class Materia {
         preguntas.remove(num-1);
     }
 
+    public String toString(){
+        return String.format("Codigo: %s - Nombre: %s - Niveles: %s", codigo, nombre, niveles);
+    }
+
+    public boolean equals(Object obj){
+        if (obj == null){return false;}
+        
+        Materia materia= (Materia) obj;
+        
+        if (getClass() == materia.getClass() && (codigo.equals(materia.getCodigo()) || nombre.equals(materia.getNombre()))){
+            return true;
+        }
+        else{return false;}
+    }
 }

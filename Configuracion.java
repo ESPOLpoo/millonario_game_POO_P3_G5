@@ -1,12 +1,16 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class Configuracion {
 
     private ArrayList<Materia> materias;
     private ArrayList<TerminoAcademico> terminosAcademicos;
 
-    public Configuracion(){} //Constructor vacío
+    public Configuracion(){
+        //Constructor vacío
+        this.materias = new ArrayList<Materia>();
+        this.terminosAcademicos = new ArrayList<TerminoAcademico>();
+    } 
 
     public Configuracion(ArrayList<Materia> materias, ArrayList<TerminoAcademico> terminosAcademicos){
         //Constructor recibe una lista inicial de materias y terminos
@@ -27,8 +31,7 @@ public class Configuracion {
     
     public void editarAñoTermino(String termino, String nuevoAño){
         int index = terminosAcademicos.indexOf(new TerminoAcademico(termino));
-
-        if (index > 0){
+        if (index >= 0){
             terminosAcademicos.get(index).setAño(nuevoAño);
         }
     }
@@ -40,12 +43,12 @@ public class Configuracion {
     public void editarNumTermino(String termino, String nuevoNum){
         int index = terminosAcademicos.indexOf(new TerminoAcademico(termino));
 
-        if (index > 0){
+        if (index >= 0){
             terminosAcademicos.get(index).setNumTermino(nuevoNum);
         }
     }
 
-    public void editarNumTermino(String termino, String nuevoNum){
+    public void editarNumTermino(String año, String num, String nuevoNum){
         editarNumTermino(año+"-"+num, nuevoNum);
     }
 
@@ -56,7 +59,7 @@ public class Configuracion {
     public void editarMateriaCod(String codigo, String nuevaInfo, String config){
         int index = materias.indexOf(new Materia(codigo, "Nada", "Nada"));
 
-        if (index > 0){
+        if (index >= 0){
             if (config.equals("nombre")){materias.get(index).setNombre(nuevaInfo);}
             if (config.equals("niveles")){materias.get(index).setNiveles(nuevaInfo);}
             
@@ -66,7 +69,7 @@ public class Configuracion {
     public void editarMateriaNom(String nombre, String nuevaInfo, String config){
         int index = materias.indexOf(new Materia("Nada", nombre, "Nada"));
 
-        if (index > 0){
+        if (index >= 0){
             if (config.equals("nombre")){materias.get(index).setNombre(nuevaInfo);}
             if (config.equals("niveles")){materias.get(index).setNiveles(nuevaInfo);}
             
@@ -75,18 +78,27 @@ public class Configuracion {
 
     public void agregarParalelo(String nombreMateria, String termino, String num, ArrayList<Participante> estudiantes){
         int index = materias.indexOf(new Materia("nada", nombreMateria, "nada"));
-        if (index > 0){
-            materias.get(index).agregarParalelo(termino, numero, estudiantes)
+        if (index >= 0){
+            materias.get(index).agregarParalelo(termino, num, estudiantes);
         }
     }
 
     public void eliminarParalelo(String termino, String num){
         for (Materia materia : materias){
             int index = materia.getParalelo().indexOf(new Paralelo(termino, num));
-            if (index > 0){
+
+            if (index >= 0){
                 materia.getParalelo().remove(index);
             }
         }
+    }
+
+    public ArrayList<Materia> getMaterias(){
+        return materias;
+    }
+
+    public ArrayList<TerminoAcademico> getTerminoAcademicos(){
+        return terminosAcademicos;
     }
 
 }

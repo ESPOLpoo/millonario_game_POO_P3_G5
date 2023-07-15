@@ -9,6 +9,7 @@ public class Materia {
     private int niveles;
     private ArrayList<Paralelo> paralelos;
     private ArrayList<Pregunta> preguntas;
+    public static ArrayList<Materia> materias;
 
     public Materia(String codigo, String nombre, int niveles){
         this.codigo = codigo;
@@ -42,8 +43,20 @@ public class Materia {
         this.niveles = niveles;
     }
 
-    public void editarMateria(String codigo, String nombre, int niveles) {
+    public static void ingresarMateria(String codigo, String nombre, int niveles) {
+        materias.add(new Materia(codigo, nombre, niveles));
+    }
 
+    public void editarMateria(String codigo, String nombre, Integer niveles) {
+        if (codigo != null) {
+            this.codigo = codigo;
+        }
+        if (nombre != null) {
+            this.nombre = nombre;
+        }
+        if (niveles != null) {
+            this.niveles = niveles;
+        }
     }
 
     public void agregarParalelo(Paralelo paralelo){
@@ -51,14 +64,14 @@ public class Materia {
     }
 
     public void eliminarParalelo(Paralelo paralelo) {
-
+        paralelos.remove(paralelo);
     }
 
     public void agregarPregunta(Pregunta pregunta){
         preguntas.add(pregunta);
     }
 
-    public void eliminarPreguntas(Pregunta pregunta){
+    public void eliminarPregunta(Pregunta pregunta){
         preguntas.remove(pregunta);
     }
 
@@ -67,13 +80,12 @@ public class Materia {
     }
 
     public boolean equals(Object obj){
-        if (obj == null){return false;}
-        
-        Materia materia= (Materia) obj;
-        
-        if (getClass() == materia.getClass() && (codigo.equals(materia.getCodigo()) || nombre.equals(materia.getNombre()))){
-            return true;
+        if (obj == null) return false;
+
+        if (obj.getClass() == this.getClass()) {
+            Materia materia = (Materia) obj;
+            return this.getCodigo().equals(materia.getCodigo());
         }
-        else{return false;}
+        return false;
     }
 }

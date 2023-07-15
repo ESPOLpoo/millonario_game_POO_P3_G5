@@ -60,18 +60,17 @@ public class Paralelo {
         this.rutaArchivoEstudiantes = rutaArchivoEstudiantes;
     }
 
-    public String toString(){
-        return String.format("Termino: %s - Numero: %s - Estudiantes: %d", termino, numero, estudiantes.size());
-    }
+//    public String toString(){
+//        return String.format("Termino: %s - Numero: %s - Estudiantes: %d", termino, numero, estudiantes.size());
+//    }
 
-    public boolean equals(Object obj){
-        if (obj == null){return false;}
-        
-        Paralelo paralelo= (Paralelo) obj;
-        
-        if (getClass() == paralelo.getClass() && termino.equals(paralelo.getTermino()) && numero.equals(paralelo.getNumero())){
-            return true;
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+
+        if (obj.getClass() == this.getClass()) {
+            Paralelo paralelo= (Paralelo) obj;
+            return this.getTermino().equals(paralelo.getTermino()) && this.getMateria().equals(paralelo.getMateria()) && this.getNumero() == paralelo.getNumero();
         }
-        else{return false;}
+        return false;
     }
 }

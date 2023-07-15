@@ -1,4 +1,4 @@
-package org.game.model;
+package org.game.model.logic;
 
 import java.util.ArrayList;
 

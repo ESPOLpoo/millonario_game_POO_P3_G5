@@ -6,8 +6,9 @@ public class Paralelo {
     private TerminoAcademico termino;
     private Materia materia;
     private int numero;
-    private ArrayList<Estudiante> estudiantes;
+    private ArrayList<Estudiante> estudiantes = new ArrayList<>();
     private String rutaArchivoEstudiantes;
+    public static ArrayList<Paralelo> paralelos = new ArrayList<>();
 
     public Paralelo(TerminoAcademico termino, Materia materia, int numero){
         this.termino = termino;
@@ -18,6 +19,13 @@ public class Paralelo {
     public Paralelo(TerminoAcademico termino, Materia materia, int numero, ArrayList<Estudiante> estudiantes){
         this(termino, materia, numero);
         this.estudiantes = estudiantes;
+    }
+
+    public Paralelo(TerminoAcademico termino, Materia materia, int numero, String rutaArchivoEstudiantes) {
+        this.termino = termino;
+        this.materia = materia;
+        this.numero = numero;
+        this.rutaArchivoEstudiantes = rutaArchivoEstudiantes;
     }
 
     public TerminoAcademico getTermino() {
@@ -60,9 +68,21 @@ public class Paralelo {
         this.rutaArchivoEstudiantes = rutaArchivoEstudiantes;
     }
 
-//    public String toString(){
-//        return String.format("Termino: %s - Numero: %s - Estudiantes: %d", termino, numero, estudiantes.size());
-//    }
+    public static void ingresarParalelo(TerminoAcademico termino, Materia materia, int numero){
+        paralelos.add(new Paralelo(termino, materia, numero));
+    }
+
+    public static void ingresarParalelo(TerminoAcademico termino, Materia materia, int numero, String rutaArchivoEstudiantes){
+        paralelos.add(new Paralelo(termino, materia, numero, rutaArchivoEstudiantes));
+    }
+
+    public static void eliminarParalelo(Paralelo paralelo){
+        paralelos.remove(paralelo);
+    }
+
+    public String toString(){
+        return String.format("Termino: %s - Materia: %s - Numero: %s ", this.termino, this.materia, this.numero);
+    }
 
     public boolean equals(Object obj) {
         if (obj == null) return false;

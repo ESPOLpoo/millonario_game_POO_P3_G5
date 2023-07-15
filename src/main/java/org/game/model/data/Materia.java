@@ -1,6 +1,7 @@
 package org.game.model.data;
 
 import java.util.ArrayList;
+
 import org.game.model.logic.Pregunta;
 
 public class Materia {
@@ -9,9 +10,9 @@ public class Materia {
     private int niveles;
     private ArrayList<Paralelo> paralelos;
     private ArrayList<Pregunta> preguntas;
-    public static ArrayList<Materia> materias;
+    public static ArrayList<Materia> materias = new ArrayList<>();
 
-    public Materia(String codigo, String nombre, int niveles){
+    public Materia(String codigo, String nombre, int niveles) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.niveles = niveles;
@@ -43,8 +44,25 @@ public class Materia {
         this.niveles = niveles;
     }
 
+    public ArrayList<Pregunta> getPreguntas() {
+        return preguntas;
+    }
+
+    public Pregunta getPregunta(String enunciado) {
+        for (Pregunta pregunta : preguntas) {
+            if (pregunta.getEnunciado().equals(enunciado)) {
+                return pregunta;
+            }
+        }
+        return null;
+    }
+
     public static void ingresarMateria(String codigo, String nombre, int niveles) {
         materias.add(new Materia(codigo, nombre, niveles));
+    }
+
+    public static void ingresarMateria(Materia materia) {
+        materias.add(materia);
     }
 
     public void editarMateria(String codigo, String nombre, Integer niveles) {
@@ -59,7 +77,16 @@ public class Materia {
         }
     }
 
-    public void agregarParalelo(Paralelo paralelo){
+    public static Materia getMateria(String codigo) {
+        for (Materia materia : materias) {
+            if (materia.getCodigo().equals(codigo)) {
+                return materia;
+            }
+        }
+        return null;
+    }
+
+    public void agregarParalelo(Paralelo paralelo) {
         paralelos.add(paralelo);
     }
 
@@ -67,20 +94,21 @@ public class Materia {
         paralelos.remove(paralelo);
     }
 
-    public void agregarPregunta(Pregunta pregunta){
+    public void agregarPregunta(Pregunta pregunta) {
         preguntas.add(pregunta);
     }
 
-    public void eliminarPregunta(Pregunta pregunta){
+    public void eliminarPregunta(Pregunta pregunta) {
         preguntas.remove(pregunta);
     }
 
-    public String toString(){
+    public String toString() {
         return String.format("Codigo: %s - Nombre: %s - Niveles: %s", codigo, nombre, niveles);
     }
 
-    public boolean equals(Object obj){
-        if (obj == null) return false;
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
 
         if (obj.getClass() == this.getClass()) {
             Materia materia = (Materia) obj;

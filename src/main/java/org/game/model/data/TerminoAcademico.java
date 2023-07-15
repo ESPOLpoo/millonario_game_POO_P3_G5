@@ -7,7 +7,7 @@ public class TerminoAcademico {
     //ATRIBUTOS
     private int year;
     private int numeroTermino;
-    public static ArrayList<TerminoAcademico> terminosAcademicos;
+    public static ArrayList<TerminoAcademico> terminosAcademicos = new ArrayList<>();
     public static TerminoAcademico terminoSeleccionado;
 
     //CONSTRUCTOR
@@ -28,6 +28,14 @@ public class TerminoAcademico {
     public void setYear(int year) { this.year = year; }
     public void setNumeroTermino(int numeroTermino) { this.numeroTermino = numeroTermino; }
 
+    public static TerminoAcademico getTermino(String termino) {
+        for (TerminoAcademico terminoAcademico : terminosAcademicos) {
+            if (terminoAcademico.toString().equals(termino)) {
+                return terminoAcademico;
+            }
+        }
+        return null;
+    }
     public boolean equals(Object obj) {
         if (obj == null) return false;
 
@@ -40,6 +48,9 @@ public class TerminoAcademico {
 
     public static void ingresarTermino(int year, int numeroTermino) {
         TerminoAcademico termino = new TerminoAcademico(year, numeroTermino);
+        if (terminosAcademicos.contains(termino)) {
+            return;
+        }
         terminosAcademicos.add(termino);
     }
 

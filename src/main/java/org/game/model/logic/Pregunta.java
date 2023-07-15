@@ -18,6 +18,11 @@ public class Pregunta {
         this.respuestasIncorrectas = respuestasIncorrectas;
     }
 
+    public String toString() {
+        return "Pregunta [enunciado=" + enunciado + ", nivel=" + nivel + ", respuestaCorrecta=" + respuestaCorrecta
+                + ", respuestasIncorrectas=" + respuestasIncorrectas + "]";
+    }
+
     //GETTERS
     public String getEnunciado() { return enunciado; }
     public int getNivel() { return nivel; }
@@ -31,4 +36,15 @@ public class Pregunta {
     public void setRespuestaCorrecta(String respuestaCorrecta) { this.respuestaCorrecta = respuestaCorrecta; }
     public void setRespuestasIncorrectas(ArrayList<String> respuestasIncorrectas) { this.respuestasIncorrectas = respuestasIncorrectas; }
 
+
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() == this.getClass()) {
+            Pregunta pregunta = (Pregunta) obj;
+            return pregunta.getEnunciado().equals(this.enunciado);
+        }
+        return false;
+    }
 }

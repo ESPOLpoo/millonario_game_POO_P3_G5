@@ -28,6 +28,15 @@ public class Paralelo {
         this.rutaArchivoEstudiantes = rutaArchivoEstudiantes;
     }
 
+    public static Paralelo getParalelo(TerminoAcademico terminoSeleccionado, Materia materia, int numero) {
+        for (Paralelo paralelo : paralelos) {
+            if (paralelo.equals(new Paralelo(terminoSeleccionado, materia, numero))) {
+                return paralelo;
+            }
+        }
+        return null;
+    }
+
     public TerminoAcademico getTermino() {
         return termino;
     }
@@ -54,6 +63,15 @@ public class Paralelo {
 
     public ArrayList<Estudiante> getEstudiantes() {
         return estudiantes;
+    }
+
+    public Estudiante getEstudiante(String matricula) {
+        for (Estudiante estudiante : estudiantes) {
+            if (estudiante.getMatricula().equals(matricula)) {
+                return estudiante;
+            }
+        }
+        return null;
     }
 
     public void setEstudiantes(ArrayList<Estudiante> estudiantes) {

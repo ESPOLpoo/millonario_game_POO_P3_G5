@@ -28,6 +28,7 @@ public class TerminoAcademico {
     public void setYear(int year) { this.year = year; }
     public void setNumeroTermino(int numeroTermino) { this.numeroTermino = numeroTermino; }
 
+
     public static TerminoAcademico getTermino(String termino) {
         for (TerminoAcademico terminoAcademico : terminosAcademicos) {
             if (terminoAcademico.toString().equals(termino)) {
@@ -36,6 +37,15 @@ public class TerminoAcademico {
         }
         return null;
     }
+    public static TerminoAcademico getTermino(int year, int numeroTermino) {
+        for (TerminoAcademico terminoAcademico : terminosAcademicos) {
+            if (terminoAcademico.getYear() == year && terminoAcademico.getNumeroTermino() == numeroTermino) {
+                return terminoAcademico;
+            }
+        }
+        return null;
+    }
+
     public boolean equals(Object obj) {
         if (obj == null) return false;
 

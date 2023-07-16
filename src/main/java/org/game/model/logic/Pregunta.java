@@ -1,6 +1,7 @@
 package org.game.model.logic;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Pregunta {
 
@@ -23,12 +24,40 @@ public class Pregunta {
                 + ", respuestasIncorrectas=" + respuestasIncorrectas + "]";
     }
 
+    public String mostrarPregunta(ArrayList<String> respuestasAleatorias) {
+        String pregunta = "";
+        pregunta += "Enunciado: " + enunciado + "\n";
+        pregunta += "Nivel: " + nivel + "\n";
+        for (String respuesta : respuestasAleatorias) {
+            pregunta += respuesta + "\n";
+        }
+        pregunta += "Si desea usar el comodin, ingrese el caracter '*'\n";
+        return pregunta;
+    }
+
+    public ArrayList<String> agruparAleatoriamente(ArrayList<String> respuestasIncorrectas) {
+        String[] opciones = { "A", "B", "C", "D" };
+        ArrayList<String> respuestas = new ArrayList<>(respuestasIncorrectas);
+        respuestas.add(respuestaCorrecta);
+        Collections.shuffle(respuestas);
+        ArrayList<String> respuestasAleatorias = new ArrayList<>();
+        int i = 0;
+        for (String respuesta : respuestas) {
+            respuestasAleatorias.add(opciones[i] + ". " + respuesta);
+            i++;
+        }
+        return respuestasAleatorias;
+    }
+
     //GETTERS
     public String getEnunciado() { return enunciado; }
     public int getNivel() { return nivel; }
     public String getRespuestaCorrecta() { return respuestaCorrecta; }
     public ArrayList<String> getRespuestasIncorrectas() { return respuestasIncorrectas; }
 
+    public boolean esCorrecta(String respuesta) {
+        return respuesta.equals(respuestaCorrecta);
+    }
 
     //SETTERS
     public void setEnunciado(String enunciado) { this.enunciado = enunciado; }

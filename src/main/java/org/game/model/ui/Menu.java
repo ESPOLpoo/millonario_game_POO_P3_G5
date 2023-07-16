@@ -6,6 +6,7 @@ import java.util.Scanner;
 import org.game.model.data.Materia;
 import org.game.model.data.Paralelo;
 import org.game.model.data.TerminoAcademico;
+import org.game.model.logic.Juego;
 import org.game.model.logic.Pregunta;
 import org.game.model.logic.Showable;
 
@@ -50,8 +51,12 @@ public class Menu {
                 }
             } else {
                 // Ejecutar acciones si no tiene submenus
+                if (respuesta.equals(Integer.toString(opciones.size() + 1))) {
+                    System.out.println("Saliendo...");
+                    return;
+                }
                 switch (this.showable) {
-                    case TERMINOACADEMICO:
+                    case TERMINOACADEMICO -> {
                         /*
                          * 1. Ingresar término
                          * 2. Editar término
@@ -75,30 +80,22 @@ public class Menu {
                                 int newYear = sc.nextInt();
                                 System.out.println("Ingrese el número de término nuevo (0 para no modificar)");
                                 int newNumero = sc.nextInt();
-
-                                for (TerminoAcademico termino : TerminoAcademico.terminosAcademicos) {
-                                    if (termino.equals(new TerminoAcademico(year, numero))) {
-                                        termino.editarTermino(newYear == 0 ? null : newYear, newNumero == 0 ? null : newNumero);
-                                    }
-                                }
+                                TerminoAcademico terminoAcademico = TerminoAcademico.getTermino(year, numero);
+                                terminoAcademico.editarTermino(newYear == 0 ? null : newYear, newNumero == 0 ? null : newNumero);
                             }
                             case "3" -> {
                                 System.out.println("Ingrese el año del término a configurar");
                                 int year = sc.nextInt();
                                 System.out.println("Ingrese el número de término a configurar");
                                 int numero = sc.nextInt();
-                                for (TerminoAcademico termino : TerminoAcademico.terminosAcademicos) {
-                                    if (termino.equals(new TerminoAcademico(year, numero))) {
-                                        TerminoAcademico.configurarTermino(termino);
-                                        return;
-                                    }
-                                }
+                                TerminoAcademico terminoAcademico = TerminoAcademico.getTermino(year, numero);
+                                TerminoAcademico.configurarTermino(terminoAcademico);
                             }
                             default -> {
                             }
                         }
-                        break;
-                    case MATERIAPARALELO:
+                    }
+                    case MATERIAPARALELO -> {
                         /*
                          * 1. Ingresar materia
                          * 2. Editar materia
@@ -126,12 +123,8 @@ public class Menu {
                                 System.out.println("Ingrese el número de niveles nuevo (0 para no modificar)");
                                 int newNiveles = sc.nextInt();
                                 sc.nextLine();
-
-                                for (Materia materia : Materia.materias) {
-                                    if (materia.getCodigo().equals(codigo)) {
-                                        materia.editarMateria(newNombre.equals("0") ? null : newNombre, newCodigo.equals("0") ? null : newCodigo, newNiveles == 0 ? null : newNiveles);
-                                    }
-                                }
+                                Materia materia = Materia.getMateria(codigo);
+                                materia.editarMateria(newNombre.equals("0") ? null : newNombre, newCodigo.equals("0") ? null : newCodigo, newNiveles == 0 ? null : newNiveles);
                             }
                             case "3" -> {
                                 System.out.println("Ingrese el código de la materia del nuevo paralelo: ");
@@ -143,21 +136,14 @@ public class Menu {
                                 sc.nextLine();
                                 System.out.println("Ingrese la ruta del archivo con los estudiantes");
                                 String ruta = sc.nextLine();
-
-                                Materia materiaParalelo = null;
-                                for (Materia materia : Materia.materias) {
-                                    if (materia.getCodigo().equals(codigo)) {
-                                        materiaParalelo = materia;
-                                    }
-                                }
+                                Materia materia = Materia.getMateria(codigo);
                                 TerminoAcademico terminoAcademico = TerminoAcademico.getTermino(termino);
-                                Paralelo.ingresarParalelo(terminoAcademico, materiaParalelo, numero, ruta);
+                                Paralelo.ingresarParalelo(terminoAcademico, materia, numero, ruta);
                             }
                             case "4" -> {
-                                for(Paralelo paralelo : Paralelo.paralelos) {
+                                for (Paralelo paralelo : Paralelo.paralelos) {
                                     System.out.println(paralelo);
                                 }
-
                                 System.out.println("Ingrese el término académico del paralelo a eliminar: (ej: 2021-1)");
                                 String termino = sc.nextLine();
                                 TerminoAcademico terminoAcademico = TerminoAcademico.getTermino(termino);
@@ -167,13 +153,13 @@ public class Menu {
                                 System.out.println("Ingrese el número de paralelo a eliminar");
                                 int numero = sc.nextInt();
                                 sc.nextLine();
-
                                 Paralelo.eliminarParalelo(new Paralelo(terminoAcademico, materia, numero));
                             }
+                            default -> {
+                            }
                         }
-
-                        break;
-                    case PREGUNTA:
+                    }
+                    case PREGUNTA -> {
                         /*
                          * 1. Visualizar preguntas
                          * 2. Ingresar pregunta
@@ -220,15 +206,47 @@ public class Menu {
                                 Pregunta pregunta = materia.getPregunta(enunciado);
                                 materia.eliminarPregunta(pregunta);
                             }
+                            default -> {
+                            }
                         }
-                    case JUEGO:
-                        System.out.println("Juego");
-                        break;
-                    case REPORTE:
-                        System.out.println("Reporte");
-                        break;
-                    default:
-                        break;
+                    }
+                    case JUEGO -> {
+                        Juego juego = new Juego();
+                        juego.setTermino(TerminoAcademico.terminoSeleccionado);
+                        System.out.println("Ingrese el código de la materia para jugar");
+                        String codigo = sc.nextLine();
+                        Materia materia = Materia.getMateria(codigo);
+                        juego.setMateria(materia);
+                        System.out.println("Ingrese el número de paralelo para jugar");
+                        int numero = sc.nextInt();
+                        sc.nextLine();
+                        Paralelo paralelo = Paralelo.getParalelo(TerminoAcademico.terminoSeleccionado, materia, numero);
+                        juego.setParalelo(paralelo);
+                        System.out.println("Ingrese el número de preguntas por nivel");
+                        int preguntasPorNivel = sc.nextInt();
+                        sc.nextLine();
+                        juego.setNumeroPreguntas(preguntasPorNivel);
+                        System.out.println("Ingrese la matrícula del estudiante a jugar (0 para elegir un estudiante aleatorio)");
+                        String matricula = sc.nextLine();
+                        juego.setParticipante(matricula);
+                        System.out.println("Ingrese la matrícula del compañero de apoyo (0 para elegir un estudiante aleatorio)");
+                        String matriculaApoyo = sc.nextLine();
+                        juego.setMateApoyo(matriculaApoyo);
+                        juego.setPreguntasPorResolver();
+                        juego.jugar();
+                    }
+                    case REPORTE -> {
+                        System.out.println("Ingrese el término académico para generar el reporte: (ej: 2021-1)");
+                        String termino = sc.nextLine();
+                        System.out.println("Ingrese el código de la materia para generar el reporte");
+                        String codigo = sc.nextLine();
+                        System.out.println("Ingrese el número de paralelo para generar el reporte");
+                        int numero = sc.nextInt();
+                        sc.nextLine();
+                        Juego.mostrarJuegos(termino, codigo, numero);
+                    }
+                    default -> {
+                    }
                 }
             }
         } while (!respuesta.equals(Integer.toString(opciones.size() + 1)));

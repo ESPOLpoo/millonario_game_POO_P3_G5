@@ -57,6 +57,23 @@ public class Materia {
         return null;
     }
 
+    public static ArrayList<ArrayList<Pregunta>> agruparPorNivel(ArrayList<Pregunta> preguntas) {
+        ArrayList<ArrayList<Pregunta>> preguntasPorNivel = new ArrayList<>();
+        for (Pregunta pregunta : preguntas) {
+            int nivel = pregunta.getNivel();
+            if (preguntasPorNivel.size() < nivel) {
+                preguntasPorNivel.add(new ArrayList<Pregunta>());
+            }
+            preguntasPorNivel.get(nivel - 1).add(pregunta);
+        }
+        return preguntasPorNivel;
+    }
+
+    public static Pregunta getRandomPreguntaNivel(ArrayList<Pregunta> preguntas) {
+        int random = (int) (Math.random() * preguntas.size());
+        return preguntas.get(random);
+    }
+
     public static void ingresarMateria(String codigo, String nombre, int niveles) {
         materias.add(new Materia(codigo, nombre, niveles));
     }
@@ -86,6 +103,14 @@ public class Materia {
         return null;
     }
 
+    public Paralelo getParalelo(TerminoAcademico termino, Materia materia, int numero) {
+        for (Paralelo paralelo: paralelos) {
+            if (paralelo.equals(new Paralelo(termino, this, numero))) {
+                return paralelo;
+            }
+        }
+        return null;
+    }
     public void agregarParalelo(Paralelo paralelo) {
         paralelos.add(paralelo);
     }

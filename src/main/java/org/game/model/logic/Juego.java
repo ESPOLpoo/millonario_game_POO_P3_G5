@@ -164,13 +164,16 @@ public class Juego {
     }
 
     public void setPreguntasPorResolver() {
-        preguntasPorResolver = new Pregunta[materia.getNiveles()];
-        ArrayList<ArrayList<Pregunta>> preguntasPorNivel = Materia.agruparPorNivel(materia.getPreguntas());
+        preguntasPorResolver = new Pregunta[materia.getNiveles() * this.numeroPreguntas]; // array de preguntas con numero de preguntas por nivel
+        ArrayList<ArrayList<Pregunta>> preguntasPorNivel = Materia.agruparPorNivel(materia.getPreguntas()); // array de array de preguntas por nivel
         int i = 0;
         for (ArrayList<Pregunta> preguntasNivel : preguntasPorNivel) {
-            Pregunta preguntaRandom = Materia.getRandomPreguntaNivel(preguntasNivel);
-            preguntasPorResolver[i] = preguntaRandom;
-            i++;
+            for (int j = 0; j < numeroPreguntas; j++) {
+                Pregunta preguntaRandom = Materia.getRandomPreguntaNivel(preguntasNivel);
+                preguntasPorResolver[i] = preguntaRandom;
+                preguntasNivel.remove(preguntaRandom);
+                i++;
+            }
         }
     }
 

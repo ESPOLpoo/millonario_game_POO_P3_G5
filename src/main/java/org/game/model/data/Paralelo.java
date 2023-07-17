@@ -99,7 +99,7 @@ public class Paralelo {
     }
 
     public String toString(){
-        return String.format("Termino: %s - Materia: %s - Numero: %s ", this.termino, this.materia, this.numero);
+        return String.format("Termino: %s - Materia: %s - NumeroParalelo: %s ", this.termino, this.materia, this.numero);
     }
 
     public boolean equals(Object obj) {

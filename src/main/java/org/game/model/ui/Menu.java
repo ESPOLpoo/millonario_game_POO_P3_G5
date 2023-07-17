@@ -81,7 +81,8 @@ public class Menu {
                                 System.out.println("Ingrese el número de término nuevo (0 para no modificar)");
                                 int newNumero = sc.nextInt();
                                 TerminoAcademico terminoAcademico = TerminoAcademico.getTermino(year, numero);
-                                terminoAcademico.editarTermino(newYear == 0 ? null : newYear, newNumero == 0 ? null : newNumero);
+                                if (terminoAcademico != null){terminoAcademico.editarTermino(newYear == 0 ? null : newYear, newNumero == 0 ? null : newNumero);}
+                                else {System.out.println("Asegurate de haber ingresado correctamente la información.");}
                             }
                             case "3" -> {
                                 System.out.println("Ingrese el año del término a configurar");
@@ -89,7 +90,8 @@ public class Menu {
                                 System.out.println("Ingrese el número de término a configurar");
                                 int numero = sc.nextInt();
                                 TerminoAcademico terminoAcademico = TerminoAcademico.getTermino(year, numero);
-                                TerminoAcademico.configurarTermino(terminoAcademico);
+                                if (terminoAcademico != null) {TerminoAcademico.configurarTermino(terminoAcademico);}
+                                else {System.out.println("Asegurate de haber ingresado correctamente la información.");}
                             }
                             default -> {
                             }
@@ -124,7 +126,8 @@ public class Menu {
                                 int newNiveles = sc.nextInt();
                                 sc.nextLine();
                                 Materia materia = Materia.getMateria(codigo);
-                                materia.editarMateria(newNombre.equals("0") ? null : newNombre, newCodigo.equals("0") ? null : newCodigo, newNiveles == 0 ? null : newNiveles);
+                                if (materia != null) {materia.editarMateria(newNombre.equals("0") ? null : newNombre, newCodigo.equals("0") ? null : newCodigo, newNiveles == 0 ? null : newNiveles);}
+                                else {System.out.println("Asegurate de haber ingresado correctamente la información.");}
                             }
                             case "3" -> {
                                 System.out.println("Ingrese el código de la materia del nuevo paralelo: ");
@@ -138,7 +141,8 @@ public class Menu {
                                 String ruta = sc.nextLine();
                                 Materia materia = Materia.getMateria(codigo);
                                 TerminoAcademico terminoAcademico = TerminoAcademico.getTermino(termino);
-                                Paralelo.ingresarParalelo(terminoAcademico, materia, numero, ruta);
+                                if (materia != null && terminoAcademico!= null){Paralelo.ingresarParalelo(terminoAcademico, materia, numero, ruta);}
+                                else {System.out.println("Asegurate de haber ingresado correctamente la información.");}
                             }
                             case "4" -> {
                                 for (Paralelo paralelo : Paralelo.paralelos) {
@@ -153,7 +157,8 @@ public class Menu {
                                 System.out.println("Ingrese el número de paralelo a eliminar");
                                 int numero = sc.nextInt();
                                 sc.nextLine();
-                                Paralelo.eliminarParalelo(new Paralelo(terminoAcademico, materia, numero));
+                                if (materia != null && terminoAcademico!= null){Paralelo.eliminarParalelo(new Paralelo(terminoAcademico, materia, numero));}
+                                else {System.out.println("Asegurate de haber ingresado correctamente la información.");}
                             }
                             default -> {
                             }
@@ -170,41 +175,52 @@ public class Menu {
                                 System.out.println("Ingrese el código de la materia para mostrar sus preguntas");
                                 String codigo = sc.nextLine();
                                 Materia materia = Materia.getMateria(codigo);
-                                for (Pregunta pregunta : materia.getPreguntas()) {
-                                    System.out.println(pregunta);
+                                if (materia != null){
+                                    for (Pregunta pregunta : materia.getPreguntas()) {
+                                        System.out.println(pregunta);
+                                    }
                                 }
+                                else {System.out.println("Asegurate de haber ingresado correctamente la información.");}
                             }
                             case "2" -> {
                                 System.out.println("Ingrese el código de la materia para ingresar una pregunta");
                                 String codigo = sc.nextLine();
                                 Materia materia = Materia.getMateria(codigo);
-                                System.out.println("Para esta materia, existen " + materia.getNiveles() + " niveles");
-                                System.out.println("Ingrese el enunciado de la pregunta");
-                                String enunciado = sc.nextLine();
-                                System.out.println("Ingrese el nivel de la pregunta: (mínimo 1)");
-                                int niveles = sc.nextInt();
-                                sc.nextLine();
-                                System.out.println("Ingrese la respuesta correcta: ");
-                                String respuestaCorrecta = sc.nextLine();
-                                ArrayList<String> respuestasIncorrectas = new ArrayList<>();
-                                for (int i = 0; i < 3; i++) {
-                                    System.out.println("Ingrese una respuesta incorrecta:" + (i) + " de 3");
-                                    String respuestaIncorrecta = sc.nextLine();
-                                    respuestasIncorrectas.add(respuestaIncorrecta);
+                                if (materia != null){
+                                    System.out.println("Para esta materia, existen " + materia.getNiveles() + " niveles");
+                                    System.out.println("Ingrese el enunciado de la pregunta");
+                                    String enunciado = sc.nextLine();
+                                    System.out.println("Ingrese el nivel de la pregunta: (mínimo 1)");
+                                    int niveles = sc.nextInt();
+                                    sc.nextLine();
+                                    System.out.println("Ingrese la respuesta correcta: ");
+                                    String respuestaCorrecta = sc.nextLine();
+                                    ArrayList<String> respuestasIncorrectas = new ArrayList<>();
+                                    for (int i = 0; i < 3; i++) {
+                                        System.out.println("Ingrese una respuesta incorrecta:" + (i) + " de 3");
+                                        String respuestaIncorrecta = sc.nextLine();
+                                        respuestasIncorrectas.add(respuestaIncorrecta);
+                                        }
+                                    materia.agregarPregunta(new Pregunta(enunciado, niveles, respuestaCorrecta, respuestasIncorrectas));
                                 }
-                                materia.agregarPregunta(new Pregunta(enunciado, niveles, respuestaCorrecta, respuestasIncorrectas));
+                                else {System.out.println("Asegurate de haber ingresado correctamente la información.");}
+                                
                             }
                             case "3" -> {
                                 System.out.println("Ingrese el código de la materia para eliminar sus preguntas");
                                 String codigo = sc.nextLine();
                                 Materia materia = Materia.getMateria(codigo);
-                                for (Pregunta pregunta : materia.getPreguntas()) {
-                                    System.out.println(pregunta);
+                                if (materia != null){
+                                    for (Pregunta pregunta : materia.getPreguntas()) {
+                                        System.out.println(pregunta);
+                                    }
+                                    System.out.println("Ingrese el enunciado de la pregunta a eliminar");
+                                    String enunciado = sc.nextLine();
+                                    Pregunta pregunta = materia.getPregunta(enunciado);
+                                    materia.eliminarPregunta(pregunta);
                                 }
-                                System.out.println("Ingrese el enunciado de la pregunta a eliminar");
-                                String enunciado = sc.nextLine();
-                                Pregunta pregunta = materia.getPregunta(enunciado);
-                                materia.eliminarPregunta(pregunta);
+                                else {System.out.println("Asegurate de haber ingresado correctamente la información.");}
+                                
                             }
                             default -> {
                             }
@@ -213,27 +229,38 @@ public class Menu {
                     case JUEGO -> {
                         Juego juego = new Juego();
                         juego.setTermino(TerminoAcademico.terminoSeleccionado);
-                        System.out.println("Ingrese el código de la materia para jugar");
-                        String codigo = sc.nextLine();
-                        Materia materia = Materia.getMateria(codigo);
-                        juego.setMateria(materia);
-                        System.out.println("Ingrese el número de paralelo para jugar");
-                        int numero = sc.nextInt();
-                        sc.nextLine();
-                        Paralelo paralelo = Paralelo.getParalelo(TerminoAcademico.terminoSeleccionado, materia, numero);
-                        juego.setParalelo(paralelo);
-                        System.out.println("Ingrese el número de preguntas por nivel");
-                        int preguntasPorNivel = sc.nextInt();
-                        sc.nextLine();
-                        juego.setNumeroPreguntas(preguntasPorNivel);
-                        System.out.println("Ingrese la matrícula del estudiante a jugar (0 para elegir un estudiante aleatorio)");
-                        String matricula = sc.nextLine();
-                        juego.setParticipante(matricula);
-                        System.out.println("Ingrese la matrícula del compañero de apoyo (0 para elegir un estudiante aleatorio)");
-                        String matriculaApoyo = sc.nextLine();
-                        juego.setMateApoyo(matriculaApoyo);
-                        juego.setPreguntasPorResolver();
-                        juego.jugar();
+                        if (TerminoAcademico.terminoSeleccionado != null){
+                            System.out.println("Ingrese el código de la materia para jugar");
+                            String codigo = sc.nextLine();
+                            Materia materia = Materia.getMateria(codigo);
+                            if (materia != null){
+                                juego.setMateria(materia);
+                                System.out.println("Ingrese el número de paralelo para jugar");
+                                int numero = sc.nextInt();
+                                sc.nextLine();
+                                Paralelo paralelo = Paralelo.getParalelo(TerminoAcademico.terminoSeleccionado, materia, numero);
+                                if (paralelo != null){
+                                    juego.setParalelo(paralelo);
+                                    System.out.println("Ingrese el número de preguntas por nivel");
+                                    int preguntasPorNivel = sc.nextInt();
+                                    sc.nextLine();
+                                    juego.setNumeroPreguntas(preguntasPorNivel);
+                                    System.out.println("Ingrese la matrícula del estudiante a jugar (0 para elegir un estudiante aleatorio)");
+                                    String matricula = sc.nextLine();
+                                    juego.setParticipante(matricula);
+                                    System.out.println("Ingrese la matrícula del compañero de apoyo (0 para elegir un estudiante aleatorio)");
+                                    String matriculaApoyo = sc.nextLine();
+                                    juego.setMateApoyo(matriculaApoyo);
+                                    juego.setPreguntasPorResolver();
+                                    juego.jugar();
+                                }
+                                else {System.out.println("Asegurate de haber ingresado correctamente la información.");}
+                            }
+                            else {System.out.println("Asegurate de haber ingresado correctamente la información.");}
+                            }
+                        else {System.out.println("Debes elegir un termino antes de inciar el juego. Ve a configuraciones");}
+                        
+                        
                     }
                     case REPORTE -> {
                         System.out.println("Ingrese el término académico para generar el reporte: (ej: 2021-1)");

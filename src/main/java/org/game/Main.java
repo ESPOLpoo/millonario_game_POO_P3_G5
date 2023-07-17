@@ -47,7 +47,7 @@ public class Main {
             add(menuNuevoJuego);
             add(menuNuevoReporte);
         }});
-
+        System.out.println("Antes de inciar el juego, escoja un termino academico en configuraciones");
         menuInicial.showMenu();
         System.out.println("Gracias por jugar con nosotros!");
     }
@@ -74,8 +74,8 @@ public class Main {
         opcionesPreguntas.add("Agregar pregunta");
         opcionesPreguntas.add("Eliminar pregunta");
 
-        opcionesNuevoJuego.add("Ingresar materia y paralelo");
-        opcionesNuevoJuego.add("Ingresar número de preguntas por nivel");
+        opcionesNuevoJuego.add("Seleccionar materia y paralelo");
+        opcionesNuevoJuego.add("Seleccionar número de preguntas por nivel");
         opcionesNuevoJuego.add("Seleccione participante");
         opcionesNuevoJuego.add("Seleccione compañero de apoyo");
 

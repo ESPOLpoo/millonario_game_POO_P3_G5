@@ -13,6 +13,6 @@ Bienvenido al juego clásico de ¿Quién quiere ser millonario?
 Para correr en local, se recomienda usar java 17 en IntelliJ
 
 
-## Licensia
+## Licencia
 
 MIT

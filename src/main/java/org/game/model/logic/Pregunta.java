@@ -1,9 +1,10 @@
 package org.game.model.logic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Pregunta {
+public class Pregunta implements Serializable {
 
     //ATRIBUTOS
     private String enunciado;

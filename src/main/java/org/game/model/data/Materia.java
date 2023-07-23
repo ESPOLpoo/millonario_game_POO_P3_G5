@@ -1,5 +1,9 @@
 package org.game.model.data;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import org.game.model.logic.Pregunta;
@@ -121,6 +125,20 @@ public class Materia {
 
     public void agregarPregunta(Pregunta pregunta) {
         preguntas.add(pregunta);
+        guardarPreguntaArchivo(pregunta);
+    }
+
+    public void guardarPreguntaArchivo(Pregunta pregunta) {
+        // CODIGO-MATERIA.csv
+        try {
+            FileOutputStream fos = new FileOutputStream(Paths.get(".").toAbsolutePath().normalize() + "/src/main/resources/" + this.codigo + ".dat", true);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(pregunta);
+            oos.flush();
+            oos.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void eliminarPregunta(Pregunta pregunta) {

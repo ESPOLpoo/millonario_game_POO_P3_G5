@@ -1,5 +1,9 @@
 package org.game.model.data;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Paralelo {
@@ -26,6 +30,26 @@ public class Paralelo {
         this.materia = materia;
         this.numero = numero;
         this.rutaArchivoEstudiantes = rutaArchivoEstudiantes;
+        this.agregarEstudiantes();
+    }
+
+    public void agregarEstudiantes() {
+        ArrayList<Estudiante> estudiantes = new ArrayList<>();
+        String ruta = Paths.get(".").toAbsolutePath().normalize() + "/src/main/resources/" + this.rutaArchivoEstudiantes;
+        try {
+            FileReader reader = new FileReader(ruta);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] data = line.split(",");
+                Estudiante estudiante = new Estudiante(data[0], data[1]);
+                estudiantes.add(estudiante);
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        this.setEstudiantes(estudiantes);
     }
 
     public static Paralelo getParalelo(TerminoAcademico terminoSeleccionado, Materia materia, int numero) {
@@ -99,7 +123,7 @@ public class Paralelo {
     }
 
     public String toString(){
-        return String.format("Termino: %s - Materia: %s - NumeroParalelo: %s ", this.termino, this.materia, this.numero);
+        return String.format("Termino: %s - Materia: %s - NumeroParalelo: %s - Estudiantes: %s", this.termino, this.materia, this.numero, this.estudiantes);
     }
 
     public boolean equals(Object obj) {

@@ -1,16 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.PrimaryController">
-   <children>
-      <Label text="Primary View" />
-      <Button fx:id="primaryButton" text="Switch to Secondary View" onAction="#switchToSecondary"/>
-   </children>
+<VBox alignment="CENTER" onMouseClicked="#menuConfiguracion" prefHeight="720.0" prefWidth="1552.0" spacing="20.0" style="-fx-background-color: #070142;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.PrimaryController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
+   <children>
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="980.0">
+         <children>
+            <Ellipse fill="#4e1c57" radiusX="490.0" radiusY="140.0" stroke="#3ac2fb" strokeType="INSIDE" strokeWidth="10.0" />
+            <Label layoutX="478.0" layoutY="100.0" lineSpacing="0.99" text="FortuneQuest" textAlignment="CENTER">
+               <font>
+                  <Font name="JetBrains Mono ExtraBold" size="96.0" />
+               </font>
+            </Label>
+            <Label text="FortuneQuest" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="JetBrains Mono Regular" size="94.0" />
+               </font>
+            </Label>
+            <Rectangle fill="#ddac5f" height="20.0" rotate="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" StackPane.alignment="TOP_CENTER" />
+            <Rectangle fill="#ddac5f" height="20.0" layoutX="490.0" layoutY="10.0" rotate="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" StackPane.alignment="CENTER_LEFT" />
+            <Rectangle fill="#ddac5f" height="20.0" layoutX="490.0" layoutY="140.0" rotate="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" StackPane.alignment="CENTER_RIGHT" />
+            <Rectangle fill="#ddac5f" height="20.0" layoutX="490.0" layoutY="140.0" rotate="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" StackPane.alignment="BOTTOM_CENTER" />
+         </children>
+      </StackPane>
+      <Button fx:id="configuracion" mnemonicParsing="false" onMouseClicked="#menuConfiguracion" style="-fx-background-color: #042C7D; -fx-pref-height: 60; -fx-pref-width: 215;" text="Configuracion" textFill="WHITE">
+         <font>
+            <Font name="JetBrains Mono Regular" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></Button>
+      <Button fx:id="nuevoJuego" layoutX="679.0" layoutY="490.0" mnemonicParsing="false" onMouseClicked="#menuNuevoJuego" style="-fx-background-color: #042C7D; -fx-pref-height: 60; -fx-pref-width: 215;" text="Nuevo Juego" textFill="WHITE">
+         <font>
+            <Font name="JetBrains Mono Regular" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="reporte" layoutX="679.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#menuReporte" style="-fx-background-color: #042C7D; -fx-pref-height: 60; -fx-pref-width: 215;" text="Reporte" textFill="WHITE">
+         <font>
+            <Font name="JetBrains Mono Regular" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="salir" layoutX="679.0" layoutY="570.0" mnemonicParsing="false" onMouseClicked="#salir" style="-fx-background-color: #042C7D; -fx-pref-height: 60; -fx-pref-width: 215;" text="Salir" textFill="WHITE">
+         <font>
+            <Font name="JetBrains Mono Regular" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Button>
+   </children>
 </VBox>

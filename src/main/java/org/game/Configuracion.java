@@ -3,6 +3,7 @@ package org.game;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -31,7 +32,7 @@ public class Configuracion {
 
         for (int i = 0; i < opcionesTerminos.length; i++) {
             VBox canvas = new VBox();
-            canvas.setStyle("-fx-background-color: #042C7D; -fx-pref-width: 300px; -fx-pref-height: 300px;");
+            canvas.setStyle("-fx-background-color: #042C7D;");
             Opcion opcion = new Opcion(opcionesTerminos[i], canvas);
             vbox.getChildren().add(opcion);
         }
@@ -58,6 +59,9 @@ public class Configuracion {
             this.vboxOpcion = vboxOpcion;
             manageClick();
             buttonStyle("-fx-background-color: #042C7D; -fx-text-fill: #FFFFFF; -fx-pref-width: 450px; -fx-pref-height: 76px; -fx-font-size: 32px; -fx-font-family: 'JetBrains Mono';");
+
+            vboxOpcion.setMaxSize(900, 600);
+            vboxOpcion.setAlignment(Pos.CENTER);
         }
 
         public void manageClick() {

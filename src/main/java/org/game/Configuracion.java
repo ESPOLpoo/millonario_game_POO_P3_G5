@@ -1,4 +1,4 @@
-package org.game.ui;
+package org.game;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package org.game.ui;
+package org.game;
 
 public class Reporte
 {

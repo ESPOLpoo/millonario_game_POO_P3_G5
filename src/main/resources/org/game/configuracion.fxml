@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<StackPane fx:id="stackRoot" style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.ui.Configuracion">
+<StackPane fx:id="stackRoot" style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.Configuracion">
    <children>
       <VBox alignment="CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="20.0" style="-fx-background-color: #070142;">
           <padding>

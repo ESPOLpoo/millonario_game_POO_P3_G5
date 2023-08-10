@@ -1,8 +1,7 @@
-package org.game;
+package org.game.ui;
 
 import java.io.IOException;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;

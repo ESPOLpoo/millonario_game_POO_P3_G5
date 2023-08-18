@@ -7,18 +7,27 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import static javafx.application.Application.launch;
+import org.game.model.data.TerminoAcademico;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
-
+    public static String PATH = "src/main/resources/org/game/files/"; 
+    public static boolean SAVE = false;
+    public static String ERR_MSG = "Hubo un error inesperado. Tal vez sea una mala entrada de texto o un mal funcionamiento del programa :(";
     private static Scene scene;
+
 
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
+        if (!SAVE){
+            try{TerminoAcademico.loadBase(PATH);}
+            catch(IOException e){e.printStackTrace();}
+        }
         stage.show();
     }
 
@@ -33,6 +42,8 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
-        Backend.cargarDatos();
     }
+    
+
+
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.TerminosController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="20.0" style="-fx-background-color: #070142;">
+          <padding>
+              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+          </padding>
+          <children>
+              <GridPane prefHeight="30.0" prefWidth="1255.0">
+                  <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                      <ImageView fitHeight="48.0" fitWidth="253.0" onMouseClicked="#returnConfiguracion" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../../return.png" />
+                          </image>
+
+                      </ImageView>
+                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="397.0" text="Terminos Académicos" textFill="WHITE" GridPane.columnIndex="1">
+                          <font>
+                              <Font name="JetBrains Mono Regular" size="40.0" />
+                          </font>
+                      </Label>
+                  </children>
+                  <opaqueInsets>
+                      <Insets />
+                  </opaqueInsets>
+              </GridPane>
+              <Line endX="100.0" startX="-1134.897216796875" startY="1.7928931713104248" stroke="WHITE" strokeWidth="3.0" />
+            <FlowPane fx:id="pane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#returnConfiguracion" prefHeight="601.0" prefWidth="786.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="400.0" prefWidth="601.0">
+                     <children>
+                        <ScrollPane fx:id="scrollPanel" prefHeight="274.0" prefWidth="601.0">
+                           <content>
+                              <FlowPane alignment="CENTER" prefHeight="267.0" prefWidth="590.0">
+                                 <children>
+                                    <VBox fx:id="vbContainer" prefHeight="267.0" prefWidth="588.0" />
+                                 </children>
+                              </FlowPane>
+                           </content>
+                        </ScrollPane>
+                        <HBox alignment="CENTER" prefHeight="54.0" prefWidth="557.0">
+                           <children>
+                              <Label style="-fx-font-weight: bold;" text="Ingresa un nuevo termino Académico:" textFill="WHITE" />
+                              <TextField fx:id="inputText" maxWidth="100.0" prefHeight="13.0" prefWidth="553.0" />
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#updateTerminos" text="Aceptar cambios" />
+                        <Label fx:id="seleccion" style="-fx-font-weight: bold;" text="Termino Seleccionado: ....." textFill="WHITE" />
+                     </children>
+                  </VBox>
+               </children>
+            </FlowPane>
+          </children>
+      </VBox>
+   </children>
+</StackPane>

@@ -10,10 +10,8 @@ import javafx.stage.Stage;
 
 public class PrimaryController {
 
-    @FXML private Button configuracion;
-    @FXML private Button nuevoJuego;
-    @FXML private Button reporte;
-    @FXML private Button salir;
+    @FXML
+    private Button salir;
 
     @FXML void menuConfiguracion() throws IOException {
         App.setRoot("configuracion");

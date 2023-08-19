@@ -30,4 +30,8 @@ public class PrimaryController {
         Stage stage = (Stage) salir.getScene().getWindow();
         stage.close();
     }
+
+    @FXML
+    public void initialize() {
+    }
 }

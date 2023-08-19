@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="screen" style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.MateriasParalelosController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="678.0" prefWidth="1280.0" spacing="20.0" style="-fx-background-color: #070142;">
+          <padding>
+              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+          </padding>
+          <children>
+              <GridPane prefHeight="120.0" prefWidth="1251.0">
+                  <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="406.0" minWidth="10.0" prefWidth="352.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="609.0" minWidth="100.0" prefWidth="480.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="402.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                      <ImageView fitHeight="48.0" fitWidth="253.0" onMouseClicked="#returnPrimary" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                          <image>
+                              <Image url="@../../return.png" />
+                          </image>
+
+                      </ImageView>
+                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="498.0" text="Materias y Paralelos" textFill="WHITE" GridPane.columnIndex="1">
+                          <font>
+                              <Font name="JetBrains Mono Regular" size="40.0" />
+                          </font>
+                      </Label>
+                  </children>
+                  <opaqueInsets>
+                      <Insets />
+                  </opaqueInsets>
+              </GridPane>
+              <Line endX="100.0" startX="-1134.897216796875" startY="1.7928931713104248" stroke="WHITE" strokeWidth="3.0" />
+            <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="1280.0" prefHeight="307.0" prefWidth="1280.0" spacing="300.0">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <children>
+                  <VBox fx:id="materias" minWidth="500.0" prefHeight="307.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #042C7D;">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="84.0" text="Materias" textAlignment="CENTER" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets left="220.0" right="220.0" />
+                           </VBox.margin>
+                        </Label>
+                        <GridPane fx:id="gridMaterias">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="137.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="197.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Codigo" textFill="WHITE" />
+                              <Label text="Nombre" textFill="WHITE" GridPane.columnIndex="1" />
+                              <Label text="Niveles" textFill="WHITE" GridPane.columnIndex="2" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="paralelos" prefHeight="307.0" prefWidth="400.0" style="-fx-background-color: #042C7D;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="Paralelos" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets left="150.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" minWidth="1280.0" prefHeight="184.0" prefWidth="1280.0">
+               <children>
+                  <GridPane alignment="CENTER" hgap="20.0" minHeight="225.0" minWidth="1280.0" prefHeight="225.0" prefWidth="1280.0" vgap="20.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="btnMateria" mnemonicParsing="false" onMouseClicked="#ingresarMateria" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #042C7D;" text="Ingresar Materia" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="JetBrains Mono Regular" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onMouseClicked="#editarMateria" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #042C7D;" text="Editar Materia" textFill="WHITE" GridPane.rowIndex="1">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button minWidth="150.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #042C7D;" text="Agregar Materia" textFill="WHITE" GridPane.columnIndex="1">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #042C7D;" text="Eliminar Materia" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+          </children>
+      </VBox>
+   </children>
+</StackPane>

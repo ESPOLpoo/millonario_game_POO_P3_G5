@@ -29,6 +29,9 @@ public class App extends Application {
             catch(IOException e){e.printStackTrace();}
         }
         stage.show();
+
+        System.out.println("Cargando datos...");
+        Backend.cargarDatos();
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -43,7 +46,4 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-    
-
-
 }

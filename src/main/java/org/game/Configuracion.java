@@ -14,16 +14,17 @@ public class Configuracion {
 
     @FXML
     public void menuTerminosAcademicos() throws IOException{
-        App.setRoot("config_terminos");
-    }
-
-    void menuMateriasYParalelos() {
-        
+        App.setRoot("terminos");
     }
 
     @FXML
     void returnPrimary() throws IOException {
         App.setRoot("primary");
+    }
+
+    @FXML
+    public void menuMateriasYParalelos() throws IOException{
+        App.setRoot("materias_paralelos");
     }
 
 }

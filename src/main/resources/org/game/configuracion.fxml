@@ -70,7 +70,7 @@
                                       <Insets bottom="45.0" left="60.0" top="45.0" />
                                   </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #042C7D; -fx-pref-height: 76; -fx-pref-width: 450; -fx-cursor: hand;" text="Preguntas" textFill="WHITE">
+                              <Button mnemonicParsing="false" onMouseClicked="#menuPreguntas" style="-fx-background-color: #042C7D; -fx-pref-height: 76; -fx-pref-width: 450; -fx-cursor: hand;" text="Preguntas" textFill="WHITE">
                                   <font>
                                       <Font name="JetBrains Mono Regular" size="32.0" />
                                   </font>

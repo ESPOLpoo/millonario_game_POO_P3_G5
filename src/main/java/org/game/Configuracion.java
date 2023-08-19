@@ -27,4 +27,9 @@ public class Configuracion {
         App.setRoot("materias_paralelos");
     }
 
+    @FXML
+    public void menuPreguntas() throws IOException{
+        App.setRoot("preguntas");
+    }
+
 }

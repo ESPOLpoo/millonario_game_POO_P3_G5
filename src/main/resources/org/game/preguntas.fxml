@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -48,24 +49,24 @@
                   </opaqueInsets>
               </GridPane>
               <Line endX="100.0" startX="-1134.897216796875" startY="1.7928931713104248" stroke="WHITE" strokeWidth="3.0" />
-            <ScrollPane prefHeight="385.0" prefWidth="1240.0" style="-fx-background-color: #042C7D;">
+            <ScrollPane maxWidth="-Infinity" minWidth="1240.0" prefHeight="385.0" prefWidth="1240.0" style="-fx-background-color: #042C7D;">
                <content>
-                  <GridPane fx:id="gridPreguntas" prefHeight="30.0" prefWidth="1209.0" style="-fx-background-color: #042C7D;">
+                  <GridPane fx:id="gridPreguntas" maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="1240.0" style="-fx-background-color: #042C7D;">
                     <columnConstraints>
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="235.0" minWidth="0.0" prefWidth="37.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="801.0" minWidth="10.0" prefWidth="570.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="210.0" minWidth="0.0" prefWidth="49.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="239.0" minWidth="7.0" prefWidth="236.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="341.0" minWidth="10.0" prefWidth="313.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="235.0" minWidth="40.0" prefWidth="40.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="801.0" minWidth="570.0" prefWidth="570.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="210.0" minWidth="50.0" prefWidth="50.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="239.0" minWidth="240.0" prefWidth="236.0" />
+                        <ColumnConstraints halignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="340.0" prefWidth="340.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                     </rowConstraints>
                      <children>
-                        <Label text="# id" textFill="WHITE" />
-                        <Label text="Enunciado" textFill="WHITE" GridPane.columnIndex="1" />
-                        <Label text="Nivel" textFill="WHITE" GridPane.columnIndex="2" />
-                        <Label text="Respuesta Correcta" textFill="WHITE" GridPane.columnIndex="3" />
+                        <Label prefWidth="27.0" text="# id" textFill="WHITE" />
+                        <Label alignment="CENTER" prefHeight="16.0" prefWidth="96.0" text="Enunciado" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" />
+                        <Label text="Nivel" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" />
+                        <Label alignment="CENTER" prefHeight="16.0" prefWidth="211.0" text="Respuesta Correcta" textFill="WHITE" GridPane.columnIndex="3" />
                         <Label text="Posibles respuestas" textFill="WHITE" GridPane.columnIndex="4" />
                      </children>
                   </GridPane>
@@ -80,12 +81,18 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #042C7D;" text="Agregar Pregunta" textFill="WHITE">
+                  <Button fx:id="btnAgregarPregunta" mnemonicParsing="false" onMouseClicked="#agregarPregunta" style="-fx-background-color: #042C7D;" text="Agregar Pregunta" textFill="WHITE">
                      <font>
                         <Font name="JetBrains Mono Regular" size="13.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #042C7D;" text="Eliminar Pregunta" textFill="WHITE" GridPane.columnIndex="1" />
+                  <Button fx:id="btnEliminarPregunta" mnemonicParsing="false" onMouseClicked="#eliminarPregunta" style="-fx-background-color: #042C7D;" text="Eliminar Pregunta" textFill="WHITE" GridPane.columnIndex="1">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor></Button>
                </children>
             </GridPane>
           </children>

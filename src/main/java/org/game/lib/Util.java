@@ -104,4 +104,8 @@ public class Util {
         screen.getChildren().remove(modal);
         Util.setButtonStyleUnclicked(button);
     }
+
+    public static void changeCellSize(GridPane grid, int col, int row, int width, int height) {
+        grid.getChildren().get(col + row * 5).setStyle("-fx-min-width: " + width + "px; -fx-min-height: " + height + "px; -fx-max-width: " + width + "px; -fx-max-height: " + height + "px; -fx-alignment: center;");
+    }
 }

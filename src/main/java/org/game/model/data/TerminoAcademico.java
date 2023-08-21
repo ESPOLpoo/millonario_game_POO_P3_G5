@@ -50,6 +50,10 @@ public class TerminoAcademico implements Serializable, Comparable<TerminoAcademi
         info.add(""+numeroTermino);
         return info;
     }
+    
+    public TerminoAcademico getObj(ArrayList<String> info){
+        return new TerminoAcademico(info.get(0)+"-"+info.get(1));
+    }
 
     //SETTERS
     public void setYear(int year) { this.year = year; }
@@ -82,6 +86,7 @@ public class TerminoAcademico implements Serializable, Comparable<TerminoAcademi
 
             return this.getYear() == termino.getYear() && this.getNumeroTermino() == termino.getNumeroTermino();
         }
+        if (obj.toString().equals(this.toString())){return true;}
         return false;
     }
 
@@ -100,6 +105,12 @@ public class TerminoAcademico implements Serializable, Comparable<TerminoAcademi
         if (numeroTermino != null) {
             this.setNumeroTermino(numeroTermino);
         }
+    }
+    
+    public void edit(Extraible e){
+       TerminoAcademico termino = (TerminoAcademico) e;
+       setYear(termino.getYear());
+       setNumeroTermino(termino.getNumeroTermino());
     }
     
     public static void configurarTermino(TerminoAcademico termino) {
@@ -134,5 +145,13 @@ public class TerminoAcademico implements Serializable, Comparable<TerminoAcademi
             else{var=-1;}
         }
         return var;
+    }
+    
+    public void validar()throws ValidacionException{
+        if (year>2023){
+            throw new ValidacionException("Hey viajero del tiemo!. Aún falta un buen rato para el año "+year);}
+        else if (terminosAcademicos.contains(this)){
+        throw new ValidacionException("Hey! este termino ya existe, debes cambiarlo.");
+        }
     }
 }

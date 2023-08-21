@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -17,11 +18,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.TerminosController">
+<StackPane style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.TerminosController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="20.0" style="-fx-background-color: #070142;">
           <padding>
-              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+              <Insets top="20.0" />
           </padding>
           <children>
               <GridPane prefHeight="30.0" prefWidth="1255.0">
@@ -38,6 +39,9 @@
                           <image>
                               <Image url="@../../return.png" />
                           </image>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
 
                       </ImageView>
                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="464.0" text="Terminos Académicos" textFill="WHITE" GridPane.columnIndex="1">
@@ -51,27 +55,38 @@
                   </opaqueInsets>
               </GridPane>
               <Line endX="100.0" startX="-1134.897216796875" startY="1.7928931713104248" stroke="WHITE" strokeWidth="3.0" />
-            <FlowPane fx:id="pane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#returnConfiguracion" prefHeight="601.0" prefWidth="786.0">
+            <FlowPane fx:id="pane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="786.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="400.0" prefWidth="601.0">
+                  <VBox alignment="CENTER" prefHeight="432.0" prefWidth="469.0" style="-fx-background-color: #070142;">
                      <children>
-                        <ScrollPane fx:id="scrollPanel" prefHeight="274.0" prefWidth="653.0">
+                        <ScrollPane fx:id="scrollPanel" hbarPolicy="NEVER" pannable="true" prefHeight="198.0" prefWidth="469.0" style="-fx-background-color: #070142;">
                            <content>
-                              <FlowPane alignment="CENTER" prefHeight="267.0" prefWidth="590.0">
+                              <FlowPane prefHeight="283.0" prefWidth="467.0" style="-fx-background-color: #070142;">
                                  <children>
-                                    <VBox fx:id="vbContainer" prefHeight="267.0" prefWidth="651.0" />
+                                    <VBox fx:id="vbContainer" prefHeight="156.0" prefWidth="446.0" style="-fx-border-color: pink; -fx-border-width: 3;" />
                                  </children>
                               </FlowPane>
                            </content>
                         </ScrollPane>
                         <HBox alignment="CENTER" prefHeight="54.0" prefWidth="557.0">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Ingresa un nuevo termino Académico:" textFill="WHITE" />
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-style: italic; -fx-font-family: cambria math;" text="Nuevo termino Académico:" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
                               <TextField fx:id="inputText" maxWidth="100.0" prefHeight="13.0" prefWidth="553.0" />
                            </children>
                         </HBox>
-                        <Button mnemonicParsing="false" onAction="#updateTerminos" text="Aceptar cambios" />
-                        <Label fx:id="seleccion" style="-fx-font-weight: bold;" text="Termino Seleccionado: ....." textFill="WHITE" />
+                        <Label fx:id="seleccion" style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-style: italic; -fx-font-family: cambria math;" text="Termino Seleccionado: ....." textFill="WHITE">
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#updateTerminos" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Aceptar cambios" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor></Button>
                      </children>
                   </VBox>
                </children>

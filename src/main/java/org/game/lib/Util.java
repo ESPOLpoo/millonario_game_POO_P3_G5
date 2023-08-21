@@ -1,6 +1,11 @@
 package org.game.lib;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -12,6 +17,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import org.game.App;
+import org.game.model.data.TerminoAcademico;
+import org.game.model.data.ValidacionException;
 
 public class Util {
     public static ImageView loadIcon(String path) {
@@ -107,5 +115,32 @@ public class Util {
 
     public static void changeCellSize(GridPane grid, int col, int row, int width, int height) {
         grid.getChildren().get(col + row * 5).setStyle("-fx-min-width: " + width + "px; -fx-min-height: " + height + "px; -fx-max-width: " + width + "px; -fx-max-height: " + height + "px; -fx-alignment: center;");
+    }
+    
+    // Actualiza un archivo serializable
+    public static void updateSer(Object obj, String ruta)throws IOException{
+        ObjectOutputStream ser = new ObjectOutputStream(new FileOutputStream(ruta));
+        ser.writeObject(obj);
+        ser.close();
+    }
+    
+    // Busca un archivo serializable
+    public static Object getSer(String ruta)throws Exception{
+        Object obj=null;
+        ObjectInputStream ser2 = new ObjectInputStream(new FileInputStream(App.PATH+"terminos.ser"));
+        obj = ser2.readObject();
+        ser2.close();
+
+        return obj;
+    }
+    
+    // Valida el año de un termino y que no esté repetido
+    public static void validarTermino(ArrayList<TerminoAcademico> terminos, TerminoAcademico termino) throws ValidacionException{
+        if (termino.getYear()>2023){
+        throw new ValidacionException("Hey viajero del tiemo!. Aún falta un buen rato para el año "+termino.getYear());
+        }
+        else if (terminos.contains(termino)){
+        throw new ValidacionException("Hey! este termino ya existe, debes cambiarlo.");
+        }
     }
 }

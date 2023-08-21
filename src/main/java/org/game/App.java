@@ -8,7 +8,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import static javafx.application.Application.launch;
+import javafx.scene.control.Alert;
 import org.game.model.data.TerminoAcademico;
+import org.game.lib.Util;
+import org.game.model.logic.Juego;
 
 /**
  * JavaFX App
@@ -17,6 +20,7 @@ public class App extends Application {
     public static String PATH = "src/main/resources/org/game/files/"; 
     public static boolean SAVE = false;
     public static String ERR_MSG = "Hubo un error inesperado. Tal vez sea una mala entrada de texto o un mal funcionamiento del programa :(";
+    public static Juego JUEGO = new Juego();
     private static Scene scene;
 
 
@@ -45,5 +49,14 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+    
+     //Muestra una alerta
+    public static void mostrarAlerta(Alert.AlertType tipo, String mensaje) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle("Información incorrecta");
+        alert.setHeaderText("Notificacion");
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 }

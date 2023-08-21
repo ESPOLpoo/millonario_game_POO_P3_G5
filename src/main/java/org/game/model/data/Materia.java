@@ -107,6 +107,15 @@ public class Materia {
         return null;
     }
 
+    public static Materia getMateriaByNombre(String nombre) {
+        for (Materia materia : materias) {
+            if (materia.getNombre().equals(nombre)) {
+                return materia;
+            }
+        }
+        return null;
+    }
+
     public Paralelo getParalelo(TerminoAcademico termino, Materia materia, int numero) {
         for (Paralelo paralelo: paralelos) {
             if (paralelo.equals(new Paralelo(termino, this, numero))) {

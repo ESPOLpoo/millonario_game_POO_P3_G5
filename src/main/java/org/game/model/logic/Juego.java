@@ -142,6 +142,10 @@ public class Juego {
         this.numeroPreguntas = Math.min(numeroPreguntas, minimaCantidadPreguntas);
     }
 
+    public int getNumeroPreguntas() {
+        return numeroPreguntas;
+    }
+
     public void setParticipante(String matricula) {
         if (matricula.equals("0")) {
             int indice = random.nextInt(paralelo.getEstudiantes().size());

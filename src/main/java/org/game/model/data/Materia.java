@@ -52,6 +52,10 @@ public class Materia {
         return preguntas;
     }
 
+    public ArrayList<Paralelo> getParalelos() {
+        return paralelos;
+    }
+
     public Pregunta getPregunta(String enunciado) {
         for (Pregunta pregunta : preguntas) {
             if (pregunta.getEnunciado().equals(enunciado)) {

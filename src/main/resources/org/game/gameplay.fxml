@@ -34,14 +34,14 @@
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <Circle fill="#1a212d" radius="100.0" stroke="#fe9c33" strokeType="INSIDE" strokeWidth="5.0" />
-                        <Label text="0:42" textFill="WHITE">
+                        <Label fx:id="temporizadorLabel" text="0:42" textFill="WHITE">
                            <font>
                               <Font name="JetBrains Mono Regular" size="36.0" />
                            </font>
                         </Label>
                      </children>
                   </StackPane>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="312.0" prefWidth="768.0">
                      <children>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
@@ -50,21 +50,21 @@
                                     <Image url="@../../questionframe.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Pregunta" textFill="WHITE">
+                              <Label fx:id="preguntaLabel" text="Pregunta" textFill="WHITE">
                                  <font>
-                                    <Font name="JetBrains Mono Regular" size="24.0" />
+                                    <Font name="JetBrains Mono Regular" size="12.0" />
                                  </font>
                               </Label>
                            </children>
                         </StackPane>
-                        <GridPane>
+                        <GridPane maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="768.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="384.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="384.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="97.0" minHeight="3.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="94.0" minHeight="0.0" prefHeight="53.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <StackPane prefHeight="150.0" prefWidth="200.0">
@@ -74,13 +74,16 @@
                                           <Image url="@../../leftanswer.png" />
                                        </image>
                                     </ImageView>
-                                    <Label text="A. Respuesta" textFill="WHITE">
+                                    <Label fx:id="respuestaALabel" onMouseClicked="#handleAnswerClick" text="A. Respuesta" textFill="WHITE">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                        <StackPane.margin>
                                           <Insets left="30.0" />
                                        </StackPane.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="OPEN_HAND" />
+                                       </cursor>
                                     </Label>
                                  </children>
                               </StackPane>
@@ -91,35 +94,38 @@
                                           <Image url="@../../rigthanswer.png" />
                                        </image>
                                     </ImageView>
-                                    <Label text="A. Respuesta" textFill="WHITE">
+                                    <Label fx:id="respuestaCLabel" onMouseClicked="#handleAnswerClick" text="A. Respuesta" textFill="WHITE">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                        <StackPane.margin>
                                           <Insets right="30.0" />
                                        </StackPane.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="OPEN_HAND" />
+                                       </cursor>
                                     </Label>
                                  </children>
                               </StackPane>
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1">
+                              <StackPane prefHeight="62.0" prefWidth="327.0" GridPane.rowIndex="1">
                                  <children>
                                     <ImageView fitHeight="119.0" fitWidth="387.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../leftanswer.png" />
                                        </image>
                                     </ImageView>
-                                    <Label text="A. Respuesta" textFill="WHITE">
+                                    <Label fx:id="respuestaBLabel" onMouseClicked="#handleAnswerClick" text="A. Respuesta" textFill="WHITE">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                        <StackPane.margin>
                                           <Insets left="30.0" />
                                        </StackPane.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="OPEN_HAND" />
+                                       </cursor>
                                     </Label>
                                  </children>
-                                 <padding>
-                                    <Insets top="90.0" />
-                                 </padding>
                               </StackPane>
                               <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
@@ -131,18 +137,18 @@
                                           <Insets />
                                        </StackPane.margin>
                                     </ImageView>
-                                    <Label text="A. Respuesta" textFill="WHITE">
+                                    <Label fx:id="respuestaDLabel" onMouseClicked="#handleAnswerClick" text="A. Respuesta" textFill="WHITE">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                        <StackPane.margin>
                                           <Insets right="30.0" />
                                        </StackPane.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="OPEN_HAND" />
+                                       </cursor>
                                     </Label>
                                  </children>
-                                 <padding>
-                                    <Insets top="90.0" />
-                                 </padding>
                               </StackPane>
                            </children>
                         </GridPane>
@@ -155,7 +161,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="525.0" spacing="25.0" style="-fx-background-color: #2D3747;">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Comodines" textFill="WHITE">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="134.0" text="Comodines" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -168,82 +174,48 @@
                   </Label>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="mateApoyoLabel" fitHeight="75.0" fitWidth="200.0" onMouseClicked="#handleComodinClick" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../profile.png" />
                            </image>
                            <HBox.margin>
                               <Insets right="75.0" />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
                         </ImageView>
-                        <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="cincuentaLabel" fitHeight="75.0" fitWidth="200.0" onMouseClicked="#handleComodinClick" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../50-percent.png" />
                            </image>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
                         </ImageView>
-                        <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="salonLabel" fitHeight="75.0" fitWidth="200.0" onMouseClicked="#handleComodinClick" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../googleclassroom.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="75.0" />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
                         </ImageView>
                      </children>
                   </HBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="471.0" prefWidth="462.0">
                      <children>
-                        <GridPane vgap="5.0">
+                        <GridPane fx:id="gridPreguntas" vgap="5.0">
                           <columnConstraints>
                             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
-                           <children>
-                              <Label text="15" textFill="#a6a6a6">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets right="15.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="100000" textFill="WHITE" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font name="JetBrains Mono Regular" size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label text="15" textFill="#a6a6a6" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets right="15.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="15" textFill="#a6a6a6" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets right="15.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="100000" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font name="JetBrains Mono Regular" size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label text="100000" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font name="JetBrains Mono Regular" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
                         </GridPane>
                      </children>
                   </VBox>

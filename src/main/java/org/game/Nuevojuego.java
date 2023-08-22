@@ -99,8 +99,11 @@ public class Nuevojuego {
                 juego.setParticipante(estudianteAleatorio.isSelected() ? "0" : matriculaEstudiante.getText());
                 juego.setMateApoyo(companeroAleatorio.isSelected() ? "0" : matriculaCompanero.getText());
 
+                juego.setPreguntasPorResolver();
+
                 System.out.println("Juego creado: " + juego);
 
+                GamePlayController.setJuego(juego);
                 App.setRoot("gameplay");
             } catch (Exception exception) {
                 Util.showAlert("Los datos son incorrectos", "Un dato ingresado no es correcto " + exception.getMessage());

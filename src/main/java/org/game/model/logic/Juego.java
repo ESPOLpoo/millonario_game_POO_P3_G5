@@ -61,6 +61,10 @@ public class Juego {
         return participante;
     }
 
+    public Pregunta[] getPreguntasPorResolver() {
+        return this.preguntasPorResolver;
+    }
+
     public String getPremio() {
         return premio;
     }

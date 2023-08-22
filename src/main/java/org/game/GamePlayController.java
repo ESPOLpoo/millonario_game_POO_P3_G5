@@ -1,6 +1,7 @@
 package org.game;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -14,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
+import org.game.lib.Util;
 import org.game.model.logic.Comodin;
 import org.game.model.logic.Juego;
 import org.game.model.logic.Pregunta;
@@ -22,8 +24,11 @@ public class GamePlayController {
     @FXML private Label temporizadorLabel;
     @FXML private Label preguntaLabel;
     @FXML private ImageView mateApoyoLabel;
+    private boolean mateDisabled = false;
     @FXML private ImageView cincuentaLabel;
+    private boolean cincuentaDisabled = false;
     @FXML private ImageView salonLabel;
+    private boolean salonDisabled = false;
     @FXML private Label respuestaALabel;
     @FXML private Label respuestaBLabel;
     @FXML private Label respuestaCLabel;
@@ -49,7 +54,6 @@ public class GamePlayController {
         String premio = "";
 
         int cantidadPreguntasPorResolver = juego.getPreguntasPorResolver().length;
-
 
         for (int i = 0; i < cantidadPreguntasPorResolver; i++) {
             Label numeroPregunta = new Label(String.valueOf((cantidadPreguntasPorResolver - i)));
@@ -86,11 +90,13 @@ public class GamePlayController {
             randomLabelCorrect.setText(pregunta.getRespuestaCorrecta());
             randomLabels.remove(randomLabelCorrect);
 
-            for (String respuestaIncorrecta: pregunta.getRespuestasIncorrectas()) {
+            for (String respuestaIncorrecta : pregunta.getRespuestasIncorrectas()) {
                 Label randomLabel = randomLabels.get(random.nextInt(randomLabels.size()));
                 randomLabel.setText(respuestaIncorrecta);
                 randomLabels.remove(randomLabel);
             }
+
+            preguntaActual = pregunta;
 
             filaPregunta--;
         }
@@ -101,11 +107,50 @@ public class GamePlayController {
     }
 
     public void handleAnswerClick(Event e) {
+        Label clickedLabel = (Label) e.getSource();
+        String respuesta = clickedLabel.getText();
 
+        if (respuesta.equals(preguntaActual.getRespuestaCorrecta())) {
+            juego.agregarPreguntaContestada(preguntaActual);
+        } else {
+            Util.showInfo("Has perdido el juego", "Suerte para la próxima");
+        }
     }
 
     public void handleComodinClick(Event e) {
+        ImageView clickedComodin = (ImageView) e.getSource();
 
+        String notAvailable = "Comodin no disponible";
+        String content = "Ya has utilizado previamente este comodin";
+
+        Double opacity = 0.8;
+
+        if (preguntaActual.getComodin() == null) {
+            if (clickedComodin.equals(mateApoyoLabel)) {
+                if (!mateDisabled) {
+                    preguntaActual.setComodin(Comodin.MATE);
+                    mateApoyoLabel.setOpacity(opacity);
+                } else {
+                    Util.showInfo(notAvailable, content);
+                }
+            } else if (clickedComodin.equals(cincuentaLabel)) {
+                if (!cincuentaDisabled) {
+                    preguntaActual.setComodin(Comodin.CINCUENTA);
+                    cincuentaLabel.setOpacity(opacity);
+                } else {
+                    Util.showInfo(notAvailable, content);
+                }
+            } else {
+                if (!salonDisabled) {
+                    preguntaActual.setComodin(Comodin.SALON);
+                    salonLabel.setOpacity(opacity);
+                } else {
+                    Util.showInfo(notAvailable, content);
+                }
+            }
+        } else {
+            Util.showInfo("Ya has utilizado un comodín", "No se puede utilizar más de un comodín por pregunta");
+        }
     }
 
     private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {

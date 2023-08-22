@@ -61,6 +61,10 @@ public class Pregunta implements Serializable {
         return respuesta.equals(respuestaCorrecta);
     }
 
+    public Comodin getComodin() {
+        return this.comodin;
+    }
+
     //SETTERS
     public void setEnunciado(String enunciado) { this.enunciado = enunciado; }
     public void setNivel(int nivel) { this.nivel = nivel; }

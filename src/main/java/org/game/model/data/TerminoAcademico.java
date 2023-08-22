@@ -86,8 +86,7 @@ public class TerminoAcademico implements Serializable, Comparable<TerminoAcademi
 
             return this.getYear() == termino.getYear() && this.getNumeroTermino() == termino.getNumeroTermino();
         }
-        if (obj.toString().equals(this.toString())){return true;}
-        return false;
+        return obj.toString().equals(this.toString());
     }
 
     public static void ingresarTermino(int year, int numeroTermino){

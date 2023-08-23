@@ -46,6 +46,8 @@ public class TerminosController {
     @FXML
     private ScrollPane scrollPanel;
     @FXML
+    private VBox vb;
+    @FXML
     private void initialize() throws Exception {
         //Muestra la tabla
         showInfo();
@@ -65,9 +67,9 @@ public class TerminosController {
             }
             Collections.sort(terminos);
             TerminoAcademico.setTerminosAcademicos(terminos);
+            App.JUEGO.setTermino(terminoSeleccionado);
             Util.updateSer(terminos, App.PATH + "terminos.ser");
             
-            App.JUEGO.setTermino(terminoSeleccionado);
             showInfo();}
             catch (ValidacionException e) {App.mostrarAlerta(Alert.AlertType.INFORMATION, e.getMessage());}
             catch (Exception e) {
@@ -76,6 +78,7 @@ public class TerminosController {
     }
     //Muestra la tabla
     private void showInfo() throws Exception {
+        vb.getChildren().remove(buscador);
         //Limpia el conteneder y recoge los terminos académicos del archivo terminos.ser
         vbContainer.getChildren().clear();
         terminos = (ArrayList<TerminoAcademico>) Util.getSer(App.PATH + "terminos.ser");
@@ -87,23 +90,29 @@ public class TerminosController {
         }
         String[] tittles = {"Terminos Disponibles", "Año", "Periodo"};
         
-        tabla = new TablaSeleccion(tittles, e);
+        tabla = new TablaSeleccion(tittles, e,150);
         buscador = new Buscador(tabla);
         //Se implementa el evento clicked para seleccionar un termino académico
         for (TextField txt : tabla.getTextOption()) {
             txt.setOnMouseClicked(eh -> {
                 seleccion.setText("Termino seleccionado: " + txt.getText());
                 TerminoAcademico termino = new TerminoAcademico(txt.getText());
-                TerminoAcademico.configurarTermino(termino);
+                terminoSeleccionado = termino;
             });
 
         }
-        vbContainer.getChildren().addAll(buscador,tabla);
+        vb.getChildren().add(0,buscador);
+        vbContainer.getChildren().add(tabla);
     }
 
     @FXML
     private void returnConfiguracion(MouseEvent event) throws IOException {
         //Regresa al menú configuración
+        try {if (!terminos.contains(App.JUEGO.getTermino())){
+            throw new ValidacionException("El termino que has elegido no existe, vuelve a revisar");}
         App.setRoot("configuracion");
+        }
+        catch (ValidacionException e) {App.mostrarAlerta(Alert.AlertType.INFORMATION, e.getMessage());}
+        
     }
 }

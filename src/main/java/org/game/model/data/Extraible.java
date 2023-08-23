@@ -8,5 +8,5 @@ public interface Extraible {
     ArrayList<String> getInfo();
     Extraible getObj(ArrayList<String> info);
     void validar() throws ValidacionException;
-    void edit(Extraible e);
+    void edit(Extraible e)throws ValidacionException;
 }

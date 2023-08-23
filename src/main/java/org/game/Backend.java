@@ -176,7 +176,6 @@ public class Backend {
         materia5.agregarParalelo(paraleloPOOP12);
         materia5.agregarParalelo(paraleloPOOP13);
         materia5.agregarParalelo(paraleloPOOP14);
-        materia5.agregarParalelo(paraleloPOO3);
 
         ArrayList<String> ri1 = new ArrayList<>();
         ri1.add("x^2");

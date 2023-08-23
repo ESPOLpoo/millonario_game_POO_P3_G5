@@ -1,0 +1,10 @@
+Juan Pepe,202207899,pepe@espol.edu.ec
+Marlon Pedro,201256343,mape@gmail.com
+Chadi Angi,202234584,chadiuwu@outlook.com
+Laura Sánchez,200045342,laura@espol.edu.ec
+Pedro Gómez,20238473,pedrito@gmail.com
+María Rodríguez,201684389,mari@espo.edu.ec
+Andréz López,201598475,andresito@gmail.com
+Carolina Vargas,201598487,cava@espol.edu.ec
+Luis Medina,200987416,lume@espol.edu.ec
+Ana Torrez,2022,anita@gmail.com

@@ -41,7 +41,6 @@ public class Nuevojuego {
         App.setRoot("primary");
     }
 
-    @FXML
     public void getData() {
         Util.addLabelToBox(gameData, "Selecciona la materia del juego");
         ChoiceBox<String> materias = new ChoiceBox<>();
@@ -61,9 +60,7 @@ public class Nuevojuego {
             paralelos.getItems().clear();
 
             for (Paralelo paralelo: materia.get().getParalelos()) {
-                if (paralelo.getTermino().equals(TerminoAcademico.terminoSeleccionado)) {
-                    paralelos.getItems().add(String.valueOf(paralelo.getNumero()));
-                }
+                paralelos.getItems().add(String.valueOf(paralelo.getNumero()));
             }
         });
 
@@ -89,22 +86,18 @@ public class Nuevojuego {
                 juego.setTermino(TerminoAcademico.terminoSeleccionado);
                 Materia materiaSeleccionada = materia.get();
                 juego.setMateria(materiaSeleccionada);
+                System.out.println("No Error here");
                 juego.setParalelo(Paralelo.getParalelo(TerminoAcademico.terminoSeleccionado, materiaSeleccionada, Integer.parseInt(paralelos.getValue())));
                 juego.setNumeroPreguntas(Integer.parseInt(preguntasPorNivel.getText()));
 
                 if (juego.getNumeroPreguntas() != Integer.parseInt(preguntasPorNivel.getText())) {
-                    Util.showInfo("Se eligió automáticamente una cantidad distinta de preguntas", "Se eligieron " + juego.getNumeroPreguntas() + " preguntas");
+                    Util.showInfo("Se eligió automáticamente una cantidad disinta de preguntas", "Se eligieron " + juego.getNumeroPreguntas() + " preguntas");
                 }
 
                 juego.setParticipante(estudianteAleatorio.isSelected() ? "0" : matriculaEstudiante.getText());
                 juego.setMateApoyo(companeroAleatorio.isSelected() ? "0" : matriculaCompanero.getText());
 
-                juego.setPreguntasPorResolver();
-
                 System.out.println("Juego creado: " + juego);
-
-                GamePlayController.setJuego(juego);
-                App.setRoot("gameplay");
             } catch (Exception exception) {
                 Util.showAlert("Los datos son incorrectos", "Un dato ingresado no es correcto " + exception.getMessage());
             }

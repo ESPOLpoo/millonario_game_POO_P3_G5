@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import org.game.lib.Util;
 
 public class TerminoAcademico implements Serializable, Comparable<TerminoAcademico>, Extraible{
 
@@ -86,7 +87,8 @@ public class TerminoAcademico implements Serializable, Comparable<TerminoAcademi
 
             return this.getYear() == termino.getYear() && this.getNumeroTermino() == termino.getNumeroTermino();
         }
-        return obj.toString().equals(this.toString());
+        if (obj.toString().equals(this.toString())){return true;}
+        return false;
     }
 
     public static void ingresarTermino(int year, int numeroTermino){
@@ -106,8 +108,9 @@ public class TerminoAcademico implements Serializable, Comparable<TerminoAcademi
         }
     }
     
-    public void edit(Extraible e){
+    public void edit(Extraible e)throws ValidacionException{
        TerminoAcademico termino = (TerminoAcademico) e;
+       e.validar();
        setYear(termino.getYear());
        setNumeroTermino(termino.getNumeroTermino());
     }
@@ -130,8 +133,6 @@ public class TerminoAcademico implements Serializable, Comparable<TerminoAcademi
         }
         Collections.sort(terminosAcademicos);
         Util.updateSer(terminosAcademicos,ruta+"terminos.ser");
-
-        
     }
     
     public int compareTo(TerminoAcademico t){

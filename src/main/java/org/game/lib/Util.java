@@ -127,7 +127,7 @@ public class Util {
     // Busca un archivo serializable
     public static Object getSer(String ruta)throws Exception{
         Object obj=null;
-        ObjectInputStream ser2 = new ObjectInputStream(new FileInputStream(App.PATH+"terminos.ser"));
+        ObjectInputStream ser2 = new ObjectInputStream(new FileInputStream(ruta));
         obj = ser2.readObject();
         ser2.close();
 
@@ -142,5 +142,16 @@ public class Util {
         else if (terminos.contains(termino)){
         throw new ValidacionException("Hey! este termino ya existe, debes cambiarlo.");
         }
+    }
+    
+    public static ImageView loadView(String ruta, int ancho){
+        ImageView image = new ImageView();
+        try{
+            FileInputStream input = new FileInputStream(ruta);
+            Image img = new Image(input, ancho, ancho,false,false);
+            image.setImage(img);
+        }
+        catch(IOException e){e.printStackTrace();}
+        return image;
     }
 }

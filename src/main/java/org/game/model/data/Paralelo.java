@@ -3,10 +3,13 @@ package org.game.model.data;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import org.game.App;
 
-public class Paralelo {
+public class Paralelo implements Serializable, Extraible, Comparable<Paralelo>{
     private TerminoAcademico termino;
     private Materia materia;
     private int numero;
@@ -14,6 +17,11 @@ public class Paralelo {
     private String rutaArchivoEstudiantes;
     public static ArrayList<Paralelo> paralelos = new ArrayList<>();
 
+    public Paralelo(String rutaEstudiantes, int numero)throws IOException{
+        rutaArchivoEstudiantes = rutaEstudiantes;
+        this.numero = numero;
+        loadEstudiantes();
+    }
     public Paralelo(TerminoAcademico termino, Materia materia, int numero){
         this.termino = termino;
         this.materia = materia;
@@ -32,7 +40,17 @@ public class Paralelo {
         this.rutaArchivoEstudiantes = rutaArchivoEstudiantes;
         this.agregarEstudiantes();
     }
-
+    
+    public void loadEstudiantes()throws IOException{
+        estudiantes.clear();
+        BufferedReader reader = new BufferedReader(new FileReader(rutaArchivoEstudiantes));
+        String line;
+        while ((line = reader.readLine())!=null && !line.isEmpty()){
+            String[] info = line.split(",");
+            estudiantes.add(new Estudiante(info[0], info[1], info[2]));
+        }
+        Collections.sort(estudiantes);
+    }
     public void agregarEstudiantes() {
         ArrayList<Estudiante> estudiantes = new ArrayList<>();
         String ruta = Paths.get(".").toAbsolutePath().normalize() + "/src/main/resources/" + this.rutaArchivoEstudiantes;
@@ -80,11 +98,37 @@ public class Paralelo {
     public int getNumero() {
         return numero;
     }
+    
+    public ArrayList<String> getInfo(){
+        ArrayList<String> info = new ArrayList<String>();
+        info.add("Paralelo "+numero);
+        info.add(""+estudiantes.size());
+        info.add(""+numero);
+        return info;   
+    }
+    
+    public Paralelo getObj(ArrayList<String> info){
+        Paralelo p = null;
+        try{p= new Paralelo(rutaArchivoEstudiantes, Integer.parseInt(info.get(1)));}
+        catch(IOException e){e.printStackTrace();}
+        return p;
+    }
+    
+    public void validar()throws ValidacionException{
+        if (App.JUEGO.getMateria().getParalelos().contains(this)){throw new ValidacionException("Hey! ya existe un paralelo con este numero, debes cambiarlo.");}
+    }
+    
+   public void  edit(Extraible e)throws ValidacionException{
+       Paralelo paralelo = (Paralelo) e;
+       paralelo.validar();
+       setRutaArchivoEstudiantes(paralelo.getRutaArchivoEstudiantes());
+       setNumero(paralelo.getNumero());
+   }
 
     public void setNumero(int numero) {
         this.numero = numero;
     }
-
+    
     public ArrayList<Estudiante> getEstudiantes() {
         return estudiantes;
     }
@@ -131,8 +175,14 @@ public class Paralelo {
 
         if (obj.getClass() == this.getClass()) {
             Paralelo paralelo= (Paralelo) obj;
-            return this.getTermino().equals(paralelo.getTermino()) && this.getMateria().equals(paralelo.getMateria()) && this.getNumero() == paralelo.getNumero();
+            return  this.getNumero() == paralelo.getNumero();
         }
         return false;
+    }
+    
+    public int compareTo(Paralelo p){
+        if (numero >p.getNumero()){return 1;}
+        else if (numero <p.getNumero()){return -1;}
+        else{return 0;}
     }
 }

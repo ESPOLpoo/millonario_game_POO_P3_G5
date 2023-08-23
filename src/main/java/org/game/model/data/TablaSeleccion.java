@@ -23,25 +23,19 @@ public class TablaSeleccion extends FlowPane{
     private ArrayList<TextField> textOption;
     private String[] etiquetas;
     private ArrayList<String> opciones;
-    private HBox buscador;
     private VBox vb;
     private HBox tittleBox;
-    private TextField textoBuscar;
     private Button button;
+    private int tamaño;
 
-    public TablaSeleccion(String[] etiquetas, ArrayList<Extraible> info){
+    public TablaSeleccion(String[] etiquetas, ArrayList<Extraible> info, int ancho){
         this.etiquetas = etiquetas;
+        tamaño = ancho;
         this.info = info;
         texts = new ArrayList<TextField>();
         textOption = new ArrayList<TextField>();
-        //buscador = new HBox();
         tittleBox = new HBox();
         vb = new VBox();
-        //textoBuscar = new TextField();
-        //button = new Button();
-        //button.setOnAction(eh -> filtrar());
-        //buscador.getChildren().addAll(textoBuscar, button);
-        //buscador.setStyle("-fx-padding: 10px 0;");
         getChildren().addAll(tittleBox,vb);
         cargarEtiquetas();
         cargarTabla();
@@ -53,6 +47,7 @@ public class TablaSeleccion extends FlowPane{
         
         for (int i = 0; i<etiquetas.length; i++){
             TextField text = new TextField(etiquetas[i]);
+            text.setPrefWidth(tamaño);
             text.setStyle(";-fx-control-inner-background: grey;-fx-border-color:white;-fx-cursor: pointer;");
             text.setEditable(false);
             hb.getChildren().add(text);
@@ -62,10 +57,12 @@ public class TablaSeleccion extends FlowPane{
     
     private void cargarTabla(){
         
-        for (Extraible t: info){
+    for (Extraible t: info){
             HBox hb = new HBox();
             for (int i=0; i<etiquetas.length ; i++){
                 TextField infoTabla = new TextField(t.getInfo().get(i));
+                infoTabla.setPrefWidth(tamaño);
+                
                 if (i==0){
                     infoTabla.setStyle("-fx-control-inner-background: rgb(100,150,170);-fx-border-color:white;-fx-cursor: hand;");
                     infoTabla.setEditable(false);
@@ -78,7 +75,6 @@ public class TablaSeleccion extends FlowPane{
                 hb.getChildren().add(infoTabla);
                 
             }
-    
             vb.getChildren().add(hb);
 
         }
@@ -93,15 +89,15 @@ public class TablaSeleccion extends FlowPane{
                 info = new ArrayList<String>();
                 for (int j = 0; j < n; j ++) {
                 //Compara los terminos académicos actuales con los anterioresS
-                info.add(getTexts().get(2*i+j).getText().replace(" ", ""));
+                info.add(getTexts().get(n*i+j).getText());
                 }
-                Extraible obj = this.info.get(0).getObj(info);
-                if (!this.info.get(i).equals(obj)) {
+                Extraible obj = this.info.get(i).getObj(info);
+                if (!compararComponentes(this.info.get(i).getInfo(), obj.getInfo())) {
                     //En caso de haber uno distinto, se valida y se actualiza
-                    obj.validar();
                     this.info.get(i).edit(obj);
                 }
             }
+            
         } 
         catch (
                 ValidacionException e) {
@@ -114,21 +110,14 @@ public class TablaSeleccion extends FlowPane{
        
     
     }
-  
-    public void filtrar(){
-        vb.getChildren().clear();
-        
-        for (int i=0; i<textOption.size();i++){
-            System.out.println("a");
-            if (textOption.get(i).getText().contains(textoBuscar.getText())){
-                HBox hb = new HBox();
-                hb.getChildren().addAll(textOption.get(i),texts.get(2*i),texts.get(2*i+1));
-                vb.getChildren().add(hb);
-            }
+
+    public boolean compararComponentes(ArrayList<String> info1, ArrayList<String> info2){
+        boolean valor = true;
+        for (int i=0; i<info1.size(); i++){
+            if (!info1.get(i).equals(info2.get(i))){valor=false;}
         }
-            
+        return valor;
     }
-    
     public VBox getVb(){
         return vb;
     }

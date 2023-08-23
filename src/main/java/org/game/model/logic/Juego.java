@@ -25,6 +25,7 @@ public class Juego {
     private LocalDate fecha;
     private int nivelMaximo;
     private int tiempo;
+    private ArrayList<Pregunta> preguntas;
     private ArrayList<Pregunta> preguntasContestadas;
     private Pregunta[] preguntasPorResolver; // 231 Menu.java
     private ArrayList<Comodin> comodinesUsados;
@@ -48,12 +49,14 @@ public class Juego {
     }
 
     public Juego() {
+        termino = null;
+        materia = null;
+        paralelo = null;
+        participante = null;
+        mateApoyo = null;
+        preguntas = null;
         preguntasContestadas = new ArrayList<>();
         comodinesUsados = new ArrayList<>();
-    }
-
-    public static void addJuego(Juego juego) {
-        juegos.add(juego);
     }
 
 
@@ -65,16 +68,8 @@ public class Juego {
         return participante;
     }
 
-    public Pregunta[] getPreguntasPorResolver() {
-        return this.preguntasPorResolver;
-    }
-
     public String getPremio() {
         return premio;
-    }
-
-    public void setPremio(String premio) {
-        this.premio = premio;
     }
 
     public LocalDate getFecha() {
@@ -88,7 +83,25 @@ public class Juego {
     public int getTiempo() {
         return tiempo;
     }
-
+    
+    public TerminoAcademico getTermino(){
+        return termino;
+    }
+    
+    public Materia getMateria(){
+        return materia;
+    }
+    
+    public Paralelo getParalelo(){
+        return paralelo;
+    }
+    
+    public Estudiante getCompañero(){
+        return mateApoyo;
+}
+    public ArrayList<Pregunta> getPreguntas(){
+        return preguntas;
+    }
     public ArrayList<Pregunta> getPreguntasContestadas() {
         return preguntasContestadas;
     }
@@ -100,6 +113,8 @@ public class Juego {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
+    
+    public void setPreguntas(ArrayList<Pregunta> p){preguntas=p;}
 
     public void setNivelMaximo(int nivelMaximo) {
         this.nivelMaximo = nivelMaximo;
@@ -166,6 +181,8 @@ public class Juego {
             this.participante = paralelo.getEstudiante(matricula);
         }
     }
+    public void setParticipante(Estudiante e){participante = e;}
+    public void setCompañero(Estudiante e){mateApoyo = e;}
 
     public void setMateApoyo(String matriculaApoyo) {
         if (matriculaApoyo.equals("0")) {

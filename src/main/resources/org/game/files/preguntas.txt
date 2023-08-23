@@ -1,0 +1,9 @@
+¿Cuál es el nombre de esta materia?,1,Respuesta correcta,no,:p,Patito
+¿Cuál es el nombre del profesor que dicta la materia?,1,Respuesta correcta,98,45,Hola mundo
+¿Por qué la gallina cruzó la calle?,1,Respuesta correcta,98,Porque sí,No se,x+5-y
+¿Cuantos paralelos tiene esta materia?,1,Respuesta correcta,0,Patata,No se,19843
+¿Quien descubrió las aplicaciones de esta materia?,2,Respuesta correcta,Yo,El pepe,Tilín
+¿Por qué me estoy quedando en la materia?,2,Respuesta correcta,:(,Calentamiento global,Sueñito
+¿Quién tuvo el mejor promedio?,2,Respuesta correcta,Pepito,Marco,Luisa
+¿Cómo salvo la materia?,3,Respuesta correcta,No se estudia,Youtube,Peliculas
+¿Quién es el coordinador de la materia?,3,Respuesta correcta,Espol,Ecuador,No hay

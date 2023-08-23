@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.TerminosController">
+<StackPane style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.ParaleloController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="20.0" style="-fx-background-color: #070142;">
           <padding>
@@ -36,7 +36,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   </rowConstraints>
                   <children>
-                      <ImageView fitHeight="48.0" fitWidth="253.0" onMouseClicked="#returnConfiguracion" pickOnBounds="true" preserveRatio="true">
+                      <ImageView fitHeight="48.0" fitWidth="253.0" onMouseClicked="#returnMateria" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@../../return.png" />
                           </image>
@@ -45,7 +45,7 @@
                      </cursor>
 
                       </ImageView>
-                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="464.0" text="Terminos Académicos" textFill="WHITE" GridPane.columnIndex="1">
+                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="464.0" text="Paralelos" textFill="WHITE" GridPane.columnIndex="1">
                           <font>
                               <Font name="JetBrains Mono Regular" size="40.0" />
                           </font>
@@ -58,7 +58,7 @@
               <Line endX="100.0" startX="-1134.897216796875" startY="1.7928931713104248" stroke="WHITE" strokeWidth="3.0" />
             <FlowPane fx:id="pane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="786.0">
                <children>
-                  <VBox fx:id="vb" alignment="CENTER" prefHeight="432.0" prefWidth="469.0" style="-fx-background-color: #070142;">
+                  <VBox fx:id="vb" alignment="CENTER" prefHeight="511.0" prefWidth="469.0" style="-fx-background-color: #070142;">
                      <children>
                         <ScrollPane fx:id="scrollPanel" hbarPolicy="NEVER" pannable="true" prefHeight="198.0" prefWidth="469.0" style="-fx-border-color: pink; -fx-border-width: 3;">
                            <content>
@@ -71,26 +71,55 @@
                         </ScrollPane>
                         <HBox alignment="CENTER" prefHeight="54.0" prefWidth="557.0">
                            <children>
-                              <Label style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-style: italic; -fx-font-family: cambria math;" text="Nuevo termino Académico:" textFill="WHITE">
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-style: italic; -fx-font-family: cambria math;" text="Ruta de nuevo Paralelo:" textFill="WHITE">
                                  <padding>
                                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                  </padding>
                               </Label>
-                              <TextField fx:id="inputText" maxWidth="100.0" prefHeight="13.0" prefWidth="553.0" />
+                              <TextField fx:id="inputText" maxWidth="163.0" prefHeight="25.0" prefWidth="163.0" />
                            </children>
                         </HBox>
-                        <Label fx:id="seleccion" style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-style: italic; -fx-font-family: cambria math;" text="Termino Seleccionado: ....." textFill="WHITE">
+                        <HBox alignment="CENTER" prefHeight="54.0" prefWidth="557.0">
+                           <children>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-style: italic; -fx-font-family: cambria math;" text="Número de paralelo:" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="inputNumero" maxWidth="163.0" prefHeight="25.0" prefWidth="146.0" />
+                           </children>
+                        </HBox>
+                        <Label fx:id="seleccion" style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-style: italic; -fx-font-family: cambria math;" text="Paralelo Seleccionado: ....." textFill="WHITE">
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#updateTerminos" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Aceptar cambios" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#updateParalelos" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Aceptar cambios" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                            <effect>
                               <Blend />
                            </effect></Button>
+                        <Button mnemonicParsing="false" onAction="#delete" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Eliminar paralelo" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <Blend />
+                           </effect>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#estudiantesMenu" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Revisar estudiantes" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Button>
                      </children>
                   </VBox>
                </children>

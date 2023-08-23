@@ -34,6 +34,7 @@ public class App extends Application {
         if (!SAVE){
             try{
                 TerminoAcademico.loadBase(PATH);
+                Materia.loadBase(PATH);
             }
             catch(IOException e){e.printStackTrace();}
         }

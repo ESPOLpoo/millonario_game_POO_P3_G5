@@ -6,7 +6,10 @@ package org.game.model.data;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import org.game.App;
+import org.game.lib.Util;
 
 
 public class Buscador extends HBox{
@@ -14,20 +17,22 @@ public class Buscador extends HBox{
     private Button button;
     private TablaSeleccion tabla;
     
-    public Buscador(){}
-    
+   
     public Buscador(TablaSeleccion tabla){
         this.tabla = tabla;
         textoBuscar = new TextField();
-        button = new Button("Buscar");
-        button.setOnAction(eh -> filtrar());
-        getChildren().addAll(textoBuscar,button);
+        textoBuscar.setStyle("-fx-border-color:white;");
+        ImageView image = Util.loadView(App.PATH+"lupa.png",27);
+        image.setStyle("-fx-cursor: hand;");
+        image.setOnMouseClicked(eh -> filtrar());
+        setStyle("-fx-padding: 10px 0;");
+        getChildren().addAll(textoBuscar,image);
     }
     
+  
     public void filtrar(){
         tabla.getVb().getChildren().clear();
         for (int i=0; i<tabla.getTextOption().size();i++){
-            System.out.println("a");
             if (tabla.getTextOption().get(i).getText().contains(textoBuscar.getText())){
                 HBox hb = new HBox();
                 hb.getChildren().addAll(tabla.getTextOption().get(i),tabla.getTexts().get(2*i),tabla.getTexts().get(2*i+1));
@@ -36,5 +41,8 @@ public class Buscador extends HBox{
         }
     }
     
-    public void setTabla(TablaSeleccion tabla){this.tabla = tabla;}
+    public void setTabla(TablaSeleccion tabla){
+        this.tabla = tabla;
+    
+    }
 }

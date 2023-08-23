@@ -8,13 +8,14 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.Configuracion">
+<StackPane style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.Configuracion">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="678.0" prefWidth="1280.0" spacing="20.0" style="-fx-background-color: #070142;">
           <padding>
@@ -48,39 +49,77 @@
                   </opaqueInsets>
               </GridPane>
               <Line endX="100.0" startX="-1134.897216796875" startY="1.7928931713104248" stroke="WHITE" strokeWidth="3.0" />
-            <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+            <FlowPane alignment="CENTER" prefHeight="527.0" prefWidth="1240.0">
                <children>
-                      <VBox alignment="CENTER" prefHeight="557.0" prefWidth="620.0">
-                          <children>
-                              <Button mnemonicParsing="false" onMouseClicked="#menuTerminosAcademicos" prefHeight="76.0" prefWidth="408.0" style="-fx-background-color: #042C7D; -fx-pref-height: 76; -fx-pref-width: 450; -fx-cursor: hand;" text="Terminos Academicos" textFill="WHITE">
-                                  <font>
-                                      <Font name="JetBrains Mono Regular" size="32.0" />
-                                  </font>
-      
-                                  <VBox.margin>
-                                      <Insets bottom="45.0" left="60.0" top="45.0" />
-                                  </VBox.margin>
-                              </Button>
-                              <Button mnemonicParsing="false" onMouseClicked="#menuMateriasYParalelos" prefHeight="66.0" prefWidth="514.0" style="-fx-background-color: #042C7D; -fx-pref-height: 76; -fx-pref-width: 450; -fx-cursor: hand;" text="Materias y Paralelos" textFill="WHITE">
-                                  <font>
-                                      <Font name="JetBrains Mono Regular" size="32.0" />
-                                  </font>
-      
-                                  <VBox.margin>
-                                      <Insets bottom="45.0" left="60.0" top="45.0" />
-                                  </VBox.margin>
-                              </Button>
-                              <Button mnemonicParsing="false" onMouseClicked="#menuPreguntas" style="-fx-background-color: #042C7D; -fx-pref-height: 76; -fx-pref-width: 450; -fx-cursor: hand;" text="Preguntas" textFill="WHITE">
-                                  <font>
-                                      <Font name="JetBrains Mono Regular" size="32.0" />
-                                  </font>
-      
-                                  <VBox.margin>
-                                      <Insets bottom="45.0" left="60.0" top="45.0" />
-                                  </VBox.margin>
-                              </Button>
-                          </children>
-                      </VBox>
+                  <HBox prefHeight="477.0" prefWidth="1173.0">
+                     <children>
+                        <VBox alignment="BOTTOM_LEFT" prefHeight="477.0" prefWidth="396.0">
+                           <children>
+                              <Label fx:id="terminoLabel" prefHeight="34.0" prefWidth="384.0" style="-fx-font-weight: bold; -fx-font-size: 15; -fx-font-style: italic; -fx-font-family: cambria math;" text="Termino seleccionado:" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="15.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="materiaLabel" prefHeight="40.0" prefWidth="393.0" style="-fx-font-weight: bold; -fx-font-size: 15; -fx-font-style: italic; -fx-font-family: cambria math;" text="Materia seleccionada:" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="15.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="paraleloLabel" prefHeight="40.0" prefWidth="393.0" style="-fx-font-weight: bold; -fx-font-size: 15; -fx-font-style: italic; -fx-font-family: cambria math;" text="Paralelo seleccionado:" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="15.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="estudianteLabel" prefHeight="40.0" prefWidth="393.0" style="-fx-font-weight: bold; -fx-font-size: 15; -fx-font-style: italic; -fx-font-family: cambria math;" text="Estudiante seleccionado:" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="15.0" />
+                                 </padding>
+                              </Label>
+                              <Label id="compañeroLabel" fx:id="compañeroLabel" prefHeight="40.0" prefWidth="393.0" style="-fx-font-weight: bold; -fx-font-size: 15; -fx-font-style: italic; -fx-font-family: cambria math;" text="Compañero seleccionado:" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="15.0" />
+                                 </padding>
+                              </Label>
+                              <Label id="preguntaLabel" fx:id="preguntaLabel" prefHeight="40.0" prefWidth="393.0" style="-fx-font-weight: bold; -fx-font-size: 15; -fx-font-style: italic; -fx-font-family: cambria math;" text="Preguntas seleccionadas:" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="15.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                            <VBox alignment="CENTER" prefHeight="477.0" prefWidth="450.0">
+                                <children>
+                                    <Button mnemonicParsing="false" onMouseClicked="#menuTerminosAcademicos" prefHeight="76.0" prefWidth="408.0" style="-fx-background-color: #042C7D; -fx-pref-height: 76; -fx-pref-width: 450; -fx-cursor: hand;" text="Terminos Academicos" textFill="WHITE">
+                                        <font>
+                                            <Font name="JetBrains Mono Regular" size="32.0" />
+                                        </font>
+            
+                                        <VBox.margin>
+                                            <Insets bottom="45.0" left="60.0" top="45.0" />
+                                        </VBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onMouseClicked="#menuMateriasYParalelos" prefHeight="69.0" prefWidth="192.0" style="-fx-background-color: #042C7D; -fx-pref-height: 76; -fx-pref-width: 450; -fx-cursor: hand;" text="Materias y Paralelos" textFill="WHITE">
+                                        <font>
+                                            <Font name="JetBrains Mono Regular" size="32.0" />
+                                        </font>
+            
+                                        <VBox.margin>
+                                            <Insets bottom="45.0" left="60.0" top="45.0" />
+                                        </VBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onMouseClicked="#menuPreguntas" style="-fx-background-color: #042C7D; -fx-pref-height: 76; -fx-pref-width: 450; -fx-cursor: hand;" text="Preguntas" textFill="WHITE">
+                                        <font>
+                                            <Font name="JetBrains Mono Regular" size="32.0" />
+                                        </font>
+            
+                                        <VBox.margin>
+                                            <Insets bottom="45.0" left="60.0" top="45.0" />
+                                        </VBox.margin>
+                                    </Button>
+                                </children>
+                            </VBox>
+                     </children>
+                  </HBox>
                </children>
             </FlowPane>
           </children>

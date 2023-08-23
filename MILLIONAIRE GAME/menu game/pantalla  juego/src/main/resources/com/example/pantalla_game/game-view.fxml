@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-pref-height: 720; -fx-pref-width: 1280; -fx-background-color: #1E2633;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pantalla_game.GameController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <GridPane prefHeight="120.0" prefWidth="1250.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <FlowPane prefHeight="600.0" prefWidth="200.0">
+               <children>
+                  <HBox fx:id="mainOrganizator" prefHeight="600.0" prefWidth="1280.0">
+                     <children>
+                        <VBox fx:id="questionPart" alignment="CENTER" prefHeight="600.0" prefWidth="850.0">
+                           <children>
+                              <StackPane fx:id="pb" prefHeight="290.0" prefWidth="850.0">
+                                 <children>
+                                    <ProgressIndicator fx:id="chronometer" cacheShape="false" centerShape="false" prefHeight="85.0" prefWidth="82.0" progress="0.0" scaleShape="false" stylesheets="@../../../css/style.css" />
+                                    <Circle fx:id="circle" fill="#293243" radius="28.0" stroke="TRANSPARENT" strokeType="INSIDE" translateY="-1.0" />
+                                 </children></StackPane>
+                              <StackPane fx:id="questionBlock" maxHeight="130.0" minHeight="80.0" prefHeight="130.0" prefWidth="850.0" style="-fx-background-color: #1E2633;">
+                                 <children>
+                                    <ImageView fx:id="questionBackground" fitHeight="150.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../questionBackground.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="question" text="QUESTION" textFill="WHITE" translateY="-1.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                              <HBox fx:id="optionSection" alignment="CENTER" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox fx:id="optionSectionLeft" alignment="CENTER" maxHeight="180.0" minHeight="180.0" prefHeight="180.0" prefWidth="425.0">
+                                       <children>
+                                          <StackPane maxHeight="90.0" minHeight="90.0" prefHeight="90.0" prefWidth="200.0">
+                                             <children>
+                                                <ImageView fitHeight="90.0" fitWidth="425.0" pickOnBounds="true" preserveRatio="true" translateX="1.5">
+                                                   <image>
+                                                      <Image url="@../../../Options1_3.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Button fx:id="Q1" mnemonicParsing="false" opacity="0.0" scaleX="6.8" scaleY="2.5" text="         " translateX="50.0" translateY="-1.5" />
+                                                <Label text="Label" textFill="WHITE" translateX="50.0" translateY="-1.5">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane maxHeight="90.0" minHeight="90.0" prefHeight="90.0" prefWidth="200.0">
+                                             <children>
+                                                <ImageView fitHeight="90.0" fitWidth="425.0" pickOnBounds="true" preserveRatio="true" translateX="1.5">
+                                                   <image>
+                                                      <Image url="@../../../Options1_3.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Button fx:id="Q3" mnemonicParsing="false" opacity="0.0" scaleX="6.8" scaleY="2.5" text="         " translateX="50.0" translateY="-1.5" />
+                                                <Label text="Label" textFill="WHITE" translateX="50.0" translateY="-1.5">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="optionSectionRight" alignment="CENTER" maxHeight="180.0" minHeight="180.0" prefHeight="180.0" prefWidth="425.0">
+                                       <children>
+                                          <StackPane maxHeight="90.0" minHeight="90.0" prefHeight="90.0" prefWidth="200.0">
+                                             <children>
+                                                <ImageView fitHeight="90.0" fitWidth="425.0" pickOnBounds="true" preserveRatio="true" translateX="-1.5">
+                                                   <image>
+                                                      <Image url="@../../../Options2_4.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Button fx:id="Q2" mnemonicParsing="false" opacity="0.0" scaleX="6.0" scaleY="2.5" text="Button" translateX="-50.0" translateY="-1.5" />
+                                                <Label text="Label" textFill="WHITE" translateX="-40.0" translateY="-1.5">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane maxHeight="90.0" minHeight="90.0" prefHeight="90.0" prefWidth="200.0">
+                                             <children>
+                                                <ImageView fitHeight="90.0" fitWidth="425.0" pickOnBounds="true" preserveRatio="true" translateX="-1.5">
+                                                   <image>
+                                                      <Image url="@../../../Options2_4.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Button fx:id="Q4" mnemonicParsing="false" opacity="0.0" scaleX="6.0" scaleY="2.5" text="Button" translateX="-50.0" translateY="-1.5" />
+                                                <Label text="Label" textFill="WHITE" translateX="-40.0" translateY="-1.5">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="wildcardPart" prefHeight="200.0" prefWidth="430.0">
+                           <children>
+                              <VBox fx:id="wildcardPartSeparator" alignment="CENTER" prefHeight="600.0" prefWidth="430.0">
+                                 <children>
+                                    <Label fx:id="wildcardLabel" text="Label" />
+                                    <HBox fx:id="wilcards" prefHeight="73.0" prefWidth="200.0" />
+                                    <ScrollPane fitToWidth="true" prefHeight="510.0" prefWidth="430.0" style="-fx-background-color: #242B3B;">
+                                       <content>
+                                          <GridPane fx:id="questionList" alignment="CENTER" prefWidth="428.0" style="-fx-background-color: #242B3B;" vgap="10.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                             <padding>
+                                                <Insets bottom="20.0" />
+                                             </padding>
+                                          </GridPane>
+                                       </content>
+                                       <padding>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </padding>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </FlowPane>
+         </children>
+         <padding>
+            <Insets bottom="50.0" />
+         </padding>
+      </VBox>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets left="40.0" />
+   </padding>
+</StackPane>

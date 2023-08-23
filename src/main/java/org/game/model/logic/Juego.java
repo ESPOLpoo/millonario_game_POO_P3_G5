@@ -52,6 +52,10 @@ public class Juego {
         comodinesUsados = new ArrayList<>();
     }
 
+    public static void addJuego(Juego juego) {
+        juegos.add(juego);
+    }
+
 
     public static void generarReporte() {
 
@@ -67,6 +71,10 @@ public class Juego {
 
     public String getPremio() {
         return premio;
+    }
+
+    public void setPremio(String premio) {
+        this.premio = premio;
     }
 
     public LocalDate getFecha() {

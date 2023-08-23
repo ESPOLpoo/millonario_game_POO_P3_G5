@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.GamePlayController">
+<StackPane style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.GamePlayController" fx:id="screen">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #1A212D;">
          <children>
@@ -76,7 +76,7 @@
                                     </ImageView>
                                     <Label fx:id="respuestaALabel" onMouseClicked="#handleAnswerClick" text="A. Respuesta" textFill="WHITE">
                                        <font>
-                                          <Font size="24.0" />
+                                          <Font size="12.0" />
                                        </font>
                                        <StackPane.margin>
                                           <Insets left="30.0" />
@@ -96,7 +96,7 @@
                                     </ImageView>
                                     <Label fx:id="respuestaCLabel" onMouseClicked="#handleAnswerClick" text="A. Respuesta" textFill="WHITE">
                                        <font>
-                                          <Font size="24.0" />
+                                          <Font size="12.0" />
                                        </font>
                                        <StackPane.margin>
                                           <Insets right="30.0" />
@@ -116,7 +116,7 @@
                                     </ImageView>
                                     <Label fx:id="respuestaBLabel" onMouseClicked="#handleAnswerClick" text="A. Respuesta" textFill="WHITE">
                                        <font>
-                                          <Font size="24.0" />
+                                          <Font size="12.0" />
                                        </font>
                                        <StackPane.margin>
                                           <Insets left="30.0" />
@@ -139,7 +139,7 @@
                                     </ImageView>
                                     <Label fx:id="respuestaDLabel" onMouseClicked="#handleAnswerClick" text="A. Respuesta" textFill="WHITE">
                                        <font>
-                                          <Font size="24.0" />
+                                          <Font size="12.0" />
                                        </font>
                                        <StackPane.margin>
                                           <Insets right="30.0" />

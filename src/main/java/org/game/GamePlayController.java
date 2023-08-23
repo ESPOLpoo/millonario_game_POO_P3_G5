@@ -1,18 +1,23 @@
 package org.game;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import org.game.lib.Util;
@@ -21,6 +26,7 @@ import org.game.model.logic.Juego;
 import org.game.model.logic.Pregunta;
 
 public class GamePlayController {
+    public StackPane screen;
     @FXML private Label temporizadorLabel;
     @FXML private Label preguntaLabel;
     @FXML private ImageView mateApoyoLabel;
@@ -39,9 +45,9 @@ public class GamePlayController {
     private static Juego juego;
     private static Pregunta preguntaActual;
 
-    private static Random random;
+    private static Boolean correctlyAnswered;
 
-    
+    private static Random random;
 
     @FXML
     public void returnPrimary() throws IOException {
@@ -52,8 +58,6 @@ public class GamePlayController {
     public void initialize() {
         random = new Random();
         System.out.println("GamePlayController initialized" + juego);
-        boolean correcto = true;
-        String premio = "";
 
         int cantidadPreguntasPorResolver = juego.getPreguntasPorResolver().length;
 
@@ -74,35 +78,8 @@ public class GamePlayController {
             gridPreguntas.add(valorPregunta, 1, i);
         }
 
-        int filaPregunta = cantidadPreguntasPorResolver - 1;
-
-        for (Pregunta pregunta : juego.getPreguntasPorResolver()) {
-            Label labelNaranja = (Label) getNodeFromGridPane(gridPreguntas, 1, filaPregunta);
-            assert labelNaranja != null;
-            labelNaranja.setTextFill(Color.color(1, 0.61, 0.2));
-
-            preguntaLabel.setText(pregunta.getEnunciado());
-
-            ArrayList<Label> randomLabels = new ArrayList<>();
-            randomLabels.add(respuestaALabel);
-            randomLabels.add(respuestaBLabel);
-            randomLabels.add(respuestaCLabel);
-            randomLabels.add(respuestaDLabel);
-
-            Label randomLabelCorrect = randomLabels.get(random.nextInt(randomLabels.size()));
-            randomLabelCorrect.setText(pregunta.getRespuestaCorrecta());
-            randomLabels.remove(randomLabelCorrect);
-
-            for (String respuestaIncorrecta : pregunta.getRespuestasIncorrectas()) {
-                Label randomLabel = randomLabels.get(random.nextInt(randomLabels.size()));
-                randomLabel.setText(respuestaIncorrecta);
-                randomLabels.remove(randomLabel);
-            }
-
-            preguntaActual = pregunta;
-
-            filaPregunta--;
-        }
+        Thread mainThread = new Thread(this::play);
+        mainThread.start();
     }
 
     public static void setJuego(Juego juego) {
@@ -114,9 +91,10 @@ public class GamePlayController {
         String respuesta = clickedLabel.getText();
 
         if (respuesta.equals(preguntaActual.getRespuestaCorrecta())) {
+            correctlyAnswered = true;
             juego.agregarPreguntaContestada(preguntaActual);
         } else {
-            Util.showInfo("Has perdido el juego", "Suerte para la próxima");
+            correctlyAnswered = false;
         }
     }
 
@@ -140,7 +118,7 @@ public class GamePlayController {
             } else if (clickedComodin.equals(cincuentaLabel)) {
                 if (!cincuentaDisabled) {
                     preguntaActual.setComodin(Comodin.CINCUENTA);
-                    Label[] posiblesRespuestas= { respuestaALabel, respuestaBLabel, respuestaCLabel, respuestaDLabel };
+                    Label[] posiblesRespuestas = {respuestaALabel, respuestaBLabel, respuestaCLabel, respuestaDLabel};
                     int eliminadas = 0;
                     for (int i = 0; i < posiblesRespuestas.length && eliminadas < 2; i++) {
                         Label label = posiblesRespuestas[i];
@@ -176,7 +154,117 @@ public class GamePlayController {
         return null;
     }
 
-    public void updateUiQuestion(Pregunta pregunta) {
+    @FXML
+    private void play() {
+        int cantidadPreguntaPorResolver = juego.getPreguntasPorResolver().length;
+        int filaPregunta = cantidadPreguntaPorResolver - 1;
 
+        AtomicBoolean correct = new AtomicBoolean(true);
+        for (int j = 0; j < cantidadPreguntaPorResolver && correct.get(); j++) {
+            correctlyAnswered = null;
+            int finalFilaPregunta = filaPregunta;
+            int finalJ = j;
+            Thread timer = new Thread(() -> {
+                Platform.runLater(() -> updateQuestionUi(finalFilaPregunta, juego.getPreguntasPorResolver()[finalJ]));
+                AtomicInteger timeRemaining = new AtomicInteger(59);
+                for (int i = timeRemaining.get(); i > 0; i--) {
+                    try {
+                        if (correctlyAnswered == null) { // Si no se ha respondido la pregunta
+                            Platform.runLater(() -> updateTimerLabel(timeRemaining.getAndDecrement()));
+                            Thread.sleep(1000);
+                        } else if (correctlyAnswered) { // Sí se respondió correctamente
+                            juego.getPreguntasContestadas().add(preguntaActual);
+                            juego.setNivelMaximo(finalJ+1);
+                            break;
+                        } else { // Sí se respondió incorrectamente
+                            correct.set(false);
+                            Juego.addJuego(juego);
+                            Platform.runLater(() -> Util.showInfo("Has perdido el juego", "Suerte para la próxima"));
+                            App.setRoot("primary");
+                            break;
+                        }
+                    } catch (
+                            InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (
+                            IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                // Si no se ha respondido la pregunta, se termina el tiempo
+                if (correctlyAnswered == null) {
+                    Platform.runLater(() -> Util.showInfo("Has perdido el juego", "Se terminó el tiempo, suerte para la próxima"));
+                    correct.set(false);
+                    Juego.addJuego(juego);
+                    try {
+                        App.setRoot("primary");
+                    } catch (
+                            IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+            timer.start();
+            try {
+                timer.join();
+                filaPregunta--;
+            } catch (
+                    InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (correct.get()) {
+            Platform.runLater(() -> {
+                Util.showInfo("Has ganado el juego", "Felicidades");
+
+                VBox askForReward = Util.generateModal(screen, null);
+                TextField recompensa = Util.addInput(askForReward, "Ingrese su recompensa");
+                Button saveReward = Util.generateButton("Guardar");
+                saveReward.setOnAction(e -> {
+                    juego.setPremio(recompensa.getText());
+                    screen.getChildren().remove(askForReward);
+                    Juego.addJuego(juego);
+
+                    try {
+                        App.setRoot("primary");
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+
+                askForReward.getChildren().add(saveReward);
+            });
+        }
+    }
+
+    public void updateQuestionUi(int filaPregunta, Pregunta pregunta) {
+        Label labelNaranja = (Label) getNodeFromGridPane(gridPreguntas, 1, filaPregunta);
+        assert labelNaranja != null;
+        labelNaranja.setTextFill(Color.color(1, 0.61, 0.2));
+
+        preguntaLabel.setText(pregunta.getEnunciado());
+
+        ArrayList<Label> randomLabels = new ArrayList<>();
+        randomLabels.add(respuestaALabel);
+        randomLabels.add(respuestaBLabel);
+        randomLabels.add(respuestaCLabel);
+        randomLabels.add(respuestaDLabel);
+
+        Label randomLabelCorrect = randomLabels.get(random.nextInt(randomLabels.size()));
+        randomLabelCorrect.setText(pregunta.getRespuestaCorrecta());
+        randomLabels.remove(randomLabelCorrect);
+
+        for (String respuestaIncorrecta : pregunta.getRespuestasIncorrectas()) {
+            Label randomLabel = randomLabels.get(random.nextInt(randomLabels.size()));
+            randomLabel.setText(respuestaIncorrecta);
+            randomLabels.remove(randomLabel);
+        }
+
+        preguntaActual = pregunta;
+    }
+
+    private void updateTimerLabel(int timeRemaining) {
+        temporizadorLabel.setText(timeRemaining == 0 ? "0:00" : (timeRemaining > 9 ? "0:" + timeRemaining : "0:0" + timeRemaining));
     }
 }

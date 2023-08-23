@@ -7,10 +7,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import static javafx.application.Application.launch;
 import javafx.scene.control.Alert;
 import org.game.model.data.TerminoAcademico;
 import org.game.lib.Util;
+import org.game.model.data.Materia;
+import org.game.model.data.Paralelo;
 import org.game.model.logic.Juego;
 
 /**
@@ -29,13 +32,15 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"), 1280, 720);
         stage.setScene(scene);
         if (!SAVE){
-            try{TerminoAcademico.loadBase(PATH);}
+            try{
+                TerminoAcademico.loadBase(PATH);
+                Materia.loadBase(PATH);
+            }
             catch(IOException e){e.printStackTrace();}
         }
         stage.show();
 
-        System.out.println("Cargando datos...");
-        Backend.cargarDatos();
+        
     }
 
     static void setRoot(String fxml) throws IOException {

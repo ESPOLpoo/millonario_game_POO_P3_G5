@@ -41,6 +41,8 @@ public class GamePlayController {
 
     private static Random random;
 
+    
+
     @FXML
     public void returnPrimary() throws IOException {
         App.setRoot("primary");
@@ -73,6 +75,7 @@ public class GamePlayController {
         }
 
         int filaPregunta = cantidadPreguntasPorResolver - 1;
+
         for (Pregunta pregunta : juego.getPreguntasPorResolver()) {
             Label labelNaranja = (Label) getNodeFromGridPane(gridPreguntas, 1, filaPregunta);
             assert labelNaranja != null;
@@ -123,12 +126,13 @@ public class GamePlayController {
         String notAvailable = "Comodin no disponible";
         String content = "Ya has utilizado previamente este comodin";
 
-        Double opacity = 0.8;
+        double opacity = 0.5;
 
         if (preguntaActual.getComodin() == null) {
             if (clickedComodin.equals(mateApoyoLabel)) {
                 if (!mateDisabled) {
                     preguntaActual.setComodin(Comodin.MATE);
+                    Util.showInfo("Comodin compañero de apoyo", "El compañero de apoyo te recomienda la respuesta " + preguntaActual.getRespuestaCorrecta());
                     mateApoyoLabel.setOpacity(opacity);
                 } else {
                     Util.showInfo(notAvailable, content);
@@ -136,6 +140,15 @@ public class GamePlayController {
             } else if (clickedComodin.equals(cincuentaLabel)) {
                 if (!cincuentaDisabled) {
                     preguntaActual.setComodin(Comodin.CINCUENTA);
+                    Label[] posiblesRespuestas= { respuestaALabel, respuestaBLabel, respuestaCLabel, respuestaDLabel };
+                    int eliminadas = 0;
+                    for (int i = 0; i < posiblesRespuestas.length && eliminadas < 2; i++) {
+                        Label label = posiblesRespuestas[i];
+                        if (!label.getText().equals(preguntaActual.getRespuestaCorrecta())) {
+                            label.setText("");
+                            eliminadas++;
+                        }
+                    }
                     cincuentaLabel.setOpacity(opacity);
                 } else {
                     Util.showInfo(notAvailable, content);
@@ -143,6 +156,7 @@ public class GamePlayController {
             } else {
                 if (!salonDisabled) {
                     preguntaActual.setComodin(Comodin.SALON);
+                    Util.showInfo("Comodin salon", "El salon te recomienda la respuesta " + preguntaActual.getRespuestaCorrecta());
                     salonLabel.setOpacity(opacity);
                 } else {
                     Util.showInfo(notAvailable, content);
@@ -160,5 +174,9 @@ public class GamePlayController {
             }
         }
         return null;
+    }
+
+    public void updateUiQuestion(Pregunta pregunta) {
+
     }
 }

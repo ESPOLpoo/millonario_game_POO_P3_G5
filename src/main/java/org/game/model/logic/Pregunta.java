@@ -11,6 +11,7 @@ public class Pregunta implements Serializable {
     private int nivel;
     private String respuestaCorrecta;
     private ArrayList<String> respuestasIncorrectas;
+    private Comodin comodin;
 
     //CONSTRUCTOR
     public Pregunta(String enunciado, int nivel, String respuestaCorrecta, ArrayList<String> respuestasIncorrectas){
@@ -60,12 +61,19 @@ public class Pregunta implements Serializable {
         return respuesta.equals(respuestaCorrecta);
     }
 
+    public Comodin getComodin() {
+        return this.comodin;
+    }
+
     //SETTERS
     public void setEnunciado(String enunciado) { this.enunciado = enunciado; }
     public void setNivel(int nivel) { this.nivel = nivel; }
     public void setRespuestaCorrecta(String respuestaCorrecta) { this.respuestaCorrecta = respuestaCorrecta; }
     public void setRespuestasIncorrectas(ArrayList<String> respuestasIncorrectas) { this.respuestasIncorrectas = respuestasIncorrectas; }
 
+    public void setComodin(Comodin comodin) {
+        this.comodin = comodin;
+    }
 
     public boolean equals(Object obj) {
         if (obj == null) {

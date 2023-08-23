@@ -84,7 +84,6 @@ public class MateriasController {
             Util.updateSer(materias, App.PATH + "materias.ser");
 
             App.JUEGO.setMateria(materiaSeleccionada);
-            App.JUEGO.setPreguntas(App.JUEGO.getMateria().getPreguntas());
             showInfo();}
             catch (ValidacionException e) {App.mostrarAlerta(Alert.AlertType.INFORMATION, e.getMessage());}
             catch (Exception e) {

@@ -17,6 +17,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>, Extraible {
     private int nivel;
     private String respuestaCorrecta;
     private ArrayList<String> respuestasIncorrectas;
+    private Comodin comodin;
 
     //CONSTRUCTOR
     public Pregunta(String enunciado, int nivel, String respuestaCorrecta, ArrayList<String> respuestasIncorrectas){
@@ -77,13 +78,18 @@ public class Pregunta implements Serializable, Comparable<Pregunta>, Extraible {
     public boolean esCorrecta(String respuesta) {
         return respuesta.equals(respuestaCorrecta);
     }
+    public Comodin getComodin() {
+        return this.comodin;
+    }
 
     //SETTERS
     public void setEnunciado(String enunciado) { this.enunciado = enunciado; }
     public void setNivel(int nivel) { this.nivel = nivel; }
     public void setRespuestaCorrecta(String respuestaCorrecta) { this.respuestaCorrecta = respuestaCorrecta; }
     public void setRespuestasIncorrectas(ArrayList<String> respuestasIncorrectas) { this.respuestasIncorrectas = respuestasIncorrectas; }
-
+    public void setComodin(Comodin comodin) {
+        this.comodin = comodin;
+    }
 
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -109,7 +115,12 @@ public class Pregunta implements Serializable, Comparable<Pregunta>, Extraible {
         return preguntas;
     }
     
-    public int compareTo(Pregunta p){return enunciado.compareTo(p.getEnunciado());}
+    public int compareTo(Pregunta p){
+        int valor = 0;
+        if (nivel > p.getNivel()){valor=1;}
+        else if (nivel < p.getNivel()){valor=-1;}
+        return valor;
+    }
     public ArrayList<String> getInfo(){
         ArrayList<String> info = new ArrayList<String>();
         info.add(enunciado);
@@ -127,7 +138,8 @@ public class Pregunta implements Serializable, Comparable<Pregunta>, Extraible {
     }
     
     public void validar()throws ValidacionException{
-        if (App.JUEGO.getPreguntas().contains(this)){throw new ValidacionException("Hey! ya existe una pregunta como esta, debes cambiarla.");}
+        if (nivel<=0){throw new ValidacionException("No existe el nivel "+nivel);}
+        if (App.JUEGO.getMateria().getPreguntas().contains(this)){throw new ValidacionException("Hey! ya existe una pregunta como esta, debes cambiarla.");}
     }
     
     public void edit(Extraible e)throws ValidacionException{

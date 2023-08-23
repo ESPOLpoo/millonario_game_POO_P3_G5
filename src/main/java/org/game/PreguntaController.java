@@ -47,7 +47,8 @@ public class PreguntaController {
     @FXML
     private TextField inputNivel;
     @FXML
-    private void initialize() throws Exception {
+    private TextField pregNivel;
+    @FXML private void initialize() throws Exception {
         //Muestra la tabla
         showInfo();
     }
@@ -78,12 +79,21 @@ public class PreguntaController {
                 inputNivel.clear();
             }
             Collections.sort(App.JUEGO.getMateria().getPreguntas());
+            
             if (preguntaSeleccionada!=null){
                 int index = App.JUEGO.getMateria().getPreguntas().indexOf(preguntaSeleccionada);
                 preguntaSeleccionada.edit(App.JUEGO.getMateria().getPreguntas().get(index));
             }
             
             App.JUEGO.setPreguntas(App.JUEGO.getMateria().getPreguntas());
+            
+            if (!pregNivel.getText().isEmpty()){
+                App.JUEGO.validarPreguntas(Integer.parseInt(pregNivel.getText()));
+                App.JUEGO.setNumeroPreguntas(Integer.parseInt(pregNivel.getText()));
+                App.JUEGO.prepararPreguntas();
+            }
+            
+            
             
             showInfo();}
             catch (ValidacionException e) {App.mostrarAlerta(Alert.AlertType.INFORMATION, e.getMessage());}

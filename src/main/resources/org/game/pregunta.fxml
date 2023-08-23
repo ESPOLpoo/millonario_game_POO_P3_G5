@@ -109,11 +109,21 @@
                               <TextField fx:id="inputRsptIncorrecta3" maxWidth="247.0" prefHeight="25.0" prefWidth="196.0" />
                            </children>
                         </HBox>
-                        <Label fx:id="seleccion" style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-style: italic; -fx-font-family: cambria math;" text="Pregunta Seleccionada: ....." textFill="WHITE">
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                        </Label>
+                        <HBox alignment="CENTER" prefHeight="64.0" prefWidth="650.0">
+                           <children>
+                              <Label fx:id="seleccion" style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-style: italic; -fx-font-family: cambria math;" text="Pregunta Seleccionada: ....." textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-style: italic; -fx-font-family: cambria math;" text="Preguntas por nivel:" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="pregNivel" maxWidth="247.0" prefHeight="25.0" prefWidth="46.0" />
+                           </children>
+                        </HBox>
                         <HBox alignment="CENTER" prefHeight="64.0" prefWidth="650.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#updatePreguntas" prefHeight="30.0" prefWidth="128.0" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Aceptar cambios" textFill="WHITE">

@@ -12,6 +12,7 @@ import org.game.model.data.Estudiante;
 import org.game.model.data.Materia;
 import org.game.model.data.Paralelo;
 import org.game.model.data.TerminoAcademico;
+import org.game.model.data.ValidacionException;
 import org.game.model.ui.Menu;
 
 public class Juego {
@@ -63,6 +64,10 @@ public class Juego {
     public static void generarReporte() {
 
     }
+    
+    public static void addJuego(Juego juego) {
+        juegos.add(juego);
+    }
 
     public Estudiante getParticipante() {
         return participante;
@@ -70,6 +75,10 @@ public class Juego {
 
     public String getPremio() {
         return premio;
+    }
+    
+    public void setPremio(String premio) {
+        this.premio = premio;
     }
 
     public LocalDate getFecha() {
@@ -156,17 +165,7 @@ public class Juego {
     }
 
     public void setNumeroPreguntas(int numeroPreguntas) {
-        int[] niveles = new int[materia.getNiveles()];
-        for (Pregunta pregunta : materia.getPreguntas()) {
-            niveles[pregunta.getNivel() - 1]++;
-        }
-        int minimaCantidadPreguntas = 1000;
-        for (int nivel : niveles) {
-            if (nivel < minimaCantidadPreguntas) {
-                minimaCantidadPreguntas = nivel;
-            }
-        }
-        this.numeroPreguntas = Math.min(numeroPreguntas, minimaCantidadPreguntas);
+        this.numeroPreguntas = numeroPreguntas;
     }
 
     public int getNumeroPreguntas() {
@@ -208,6 +207,37 @@ public class Juego {
                 i++;
             }
         }
+    }
+    
+    public ArrayList<Pregunta> PreguntasNivel(int n){
+        ArrayList<Pregunta> p = new ArrayList<Pregunta>();
+        for (Pregunta pregunta: preguntas){
+            if (pregunta.getNivel()==n){
+                p.add(pregunta);
+            }
+        }
+        return p;
+    }
+    public void validarPreguntas(int n)throws ValidacionException{
+        int maxNivel = preguntas.get(preguntas.size()-1).getNivel();
+        ArrayList<Integer> numPreg = new ArrayList<Integer>();
+        for (int i=1; i<maxNivel+1; i++){
+            numPreg.add(PreguntasNivel(i).size());
+        }
+        int min = Collections.min(numPreg);
+        if (n>min){throw new ValidacionException("No hay preguntas suficientes como para armar un juego de "+n+" preguntas por nivel");}
+    }
+    
+    public void prepararPreguntas(){
+        int maxNivel = preguntas.get(preguntas.size()-1).getNivel();
+        ArrayList<Pregunta> p = new ArrayList<Pregunta>();
+        for (int i=1; i<maxNivel+1; i++){
+            ArrayList<Pregunta> pregunta = PreguntasNivel(i);
+            for (int j=0; j<this.numeroPreguntas; j++){
+                p.add(pregunta.get(j));
+            }
+        }
+        preguntas = p;
     }
 
     public void jugar() {

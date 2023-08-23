@@ -115,6 +115,10 @@ public class Juego {
         return preguntasContestadas;
     }
 
+    public Pregunta[] getPreguntasPorResolver() {
+        return this.preguntasPorResolver;
+    }
+
     public ArrayList<Comodin> getComodinesUsados() {
         return comodinesUsados;
     }

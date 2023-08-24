@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.ParaleloController">
+<StackPane style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.ParaleloController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="20.0" style="-fx-background-color: #070142;">
           <padding>
@@ -94,13 +94,32 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#updateParalelos" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Aceptar cambios" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="OPEN_HAND" />
-                           </cursor>
-                           <effect>
-                              <Blend />
-                           </effect></Button>
+                        <HBox alignment="CENTER" prefHeight="54.0" prefWidth="557.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#aleatorio" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Seleccionar Aleatorio" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#updateParalelos" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Aceptar cambios" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                         <Button mnemonicParsing="false" onAction="#delete" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Eliminar paralelo" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="OPEN_HAND" />

@@ -84,38 +84,58 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#updateEstudiantes" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Aceptar cambios" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="OPEN_HAND" />
-                           </cursor>
-                           <effect>
-                              <Blend />
-                           </effect>
-                           <VBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </VBox.margin></Button>
-                        <Button mnemonicParsing="false" onAction="#seleccionarParticipante" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Seleccionar Participante" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="OPEN_HAND" />
-                           </cursor>
-                           <effect>
-                              <Blend />
-                           </effect>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#seleccionarCompañero" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Seleccionar Compañero" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="OPEN_HAND" />
-                           </cursor>
-                           <effect>
-                              <Blend />
-                           </effect>
-                           <VBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </VBox.margin>
-                        </Button>
+                        <HBox alignment="CENTER" prefHeight="54.0" prefWidth="557.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#aleatorio" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Seleccionar Aleatorio" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#updateEstudiantes" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Aceptar cambios" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="54.0" prefWidth="557.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#seleccionarParticipante" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Seleccionar Participante" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#seleccionarCompañero" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Seleccionar Compañero" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                         <Button mnemonicParsing="false" onAction="#delete" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Eliminar estudiante" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="OPEN_HAND" />
@@ -124,7 +144,7 @@
                               <Blend />
                            </effect>
                            <VBox.margin>
-                              <Insets />
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </VBox.margin>
                         </Button>
                      </children>

@@ -91,6 +91,17 @@
                            <effect>
                               <Blend />
                            </effect></Button>
+                        <Button mnemonicParsing="false" onAction="#aleatorio" style="-fx-background-color: #042C7D; -fx-font-size: 15; -fx-font-family: cambria math;" text="Seleccionar Aleatorio" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <Blend />
+                           </effect>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                   </VBox>
                </children>

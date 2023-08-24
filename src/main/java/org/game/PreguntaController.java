@@ -119,7 +119,7 @@ public class PreguntaController {
         //Se implementa el evento clicked para seleccionar un termino académico
         for (TextField txt : tabla.getTextOption()) {
             txt.setOnMouseClicked(eh -> {
-                seleccion.setText("Materia seleccionada: " + txt.getText());
+                seleccion.setText("Pregunta seleccionada: " + txt.getText());
                 Pregunta pregunta = new Pregunta(txt.getText());
                 int index = App.JUEGO.getMateria().getPreguntas().indexOf(pregunta);
                 preguntaSeleccionada = App.JUEGO.getMateria().getPreguntas().get(index);

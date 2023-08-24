@@ -76,7 +76,10 @@ public class Configuracion {
 
     @FXML
     private void menuMateriasYParalelos(MouseEvent event) throws IOException{
+        System.out.println("a");
         App.setRoot("materias");
+        System.out.println("b");
+
     }
 
     @FXML

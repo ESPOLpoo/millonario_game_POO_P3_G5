@@ -224,11 +224,19 @@ public class Materia implements Serializable, Comparable<Materia>, Extraible{
             String[] info = line.split(",");
             Materia materia = new Materia(info[0], info[1], Integer.parseInt(info[2]));
             materia.getParalelos().add(p);
-            materia.setPreguntas(Pregunta.preguntasDefecto());
+            materia.setPreguntas(Pregunta.preguntasDefecto(rutaMateria(materia)));
             materias.add(materia);
         }  
         Collections.sort(materias);
         Util.updateSer(materias,ruta+"materias.ser");
+    }
+    
+    private static String rutaMateria(Materia materia){
+        if (materia.getNombre().equals("CÁLCULO DE UNA VARIABLE")){return App.PATH+"preguntas_calculo1.txt";}
+        if (materia.getNombre().equals("CÁLCULO VECTORIAL")){return App.PATH+"preguntas_calculo2.txt";}
+        if (materia.getNombre().equals("ECUACIONES DIFERENCIALES")){return App.PATH+"preguntas_ecuaciones_diff.txt";}
+        if (materia.getNombre().equals("ÁLGEBRA LINEAL")){return App.PATH+"preguntas_algebra.txt";}
+        else{return App.PATH+"preguntas_poo.txt";}
     }
     
     

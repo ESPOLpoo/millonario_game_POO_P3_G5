@@ -104,7 +104,15 @@ public class Juego {
     public Paralelo getParalelo(){
         return paralelo;
     }
-    
+
+    public static ArrayList<Juego> getJuegos(){
+        return juegos;
+    }
+
+    public Estudiante getMateApoyo(){
+        return mateApoyo;
+    }
+
     public Estudiante getCompañero(){
         return mateApoyo;
 }

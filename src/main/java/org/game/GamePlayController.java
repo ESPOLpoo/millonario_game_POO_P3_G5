@@ -1,6 +1,7 @@
 package org.game;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -156,6 +157,7 @@ public class GamePlayController {
 
     @FXML
     private void play() {
+        juego.setFecha(LocalDate.now());
         int cantidadPreguntaPorResolver = juego.getPreguntasPorResolver().length;
         int filaPregunta = cantidadPreguntaPorResolver - 1;
 
@@ -261,7 +263,7 @@ public class GamePlayController {
             randomLabels.remove(randomLabel);
         }
 
-        preguntaActual = pregunta;
+        preguntaActual = new Pregunta(pregunta);
     }
 
     private void updateTimerLabel(int timeRemaining) {

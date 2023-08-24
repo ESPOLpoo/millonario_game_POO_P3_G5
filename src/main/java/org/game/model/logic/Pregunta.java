@@ -35,6 +35,13 @@ public class Pregunta implements Serializable, Comparable<Pregunta>, Extraible {
         respuestasIncorrectas.add(incorrecto2);
         respuestasIncorrectas.add(incorrecto3);
     }
+
+    public Pregunta(Pregunta pregunta) {
+        this.enunciado = pregunta.getEnunciado();
+        this.nivel = pregunta.getNivel();
+        this.respuestaCorrecta = pregunta.getRespuestaCorrecta();
+        this.respuestasIncorrectas = pregunta.getRespuestasIncorrectas();
+    }
     
     public Pregunta(String enunciado){
     this.enunciado = enunciado;

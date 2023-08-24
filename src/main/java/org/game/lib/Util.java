@@ -73,6 +73,27 @@ public class Util {
         return modal;
     }
 
+    public static VBox generateModal(StackPane screen, Button button, int width, int height) {
+        VBox modal = new VBox();
+        ImageView close = Util.loadIcon("src/main/resources/close.png");
+
+        assert close != null;
+        close.setOnMouseClicked(e -> {
+            screen.getChildren().remove(modal);
+            Util.setButtonStyleUnclicked(button);
+        });
+        close.setStyle("-fx-cursor: hand;");
+        modal.getChildren().add(close);
+
+        modal.setStyle("-fx-background-color: #042C7D;");
+        modal.setMaxWidth(width);
+        modal.setMaxHeight(height);
+
+        screen.getChildren().add(modal);
+
+        return modal;
+    }
+
     public static void addLabelToBox(VBox modal, String label) {
         Label labelTitle = new Label(label);
         labelTitle.setTextFill(Color.color(1,1,1));
@@ -153,5 +174,10 @@ public class Util {
         }
         catch(IOException e){e.printStackTrace();}
         return image;
+    }
+
+    public static void addShowableInfoToBox(VBox modal, String fecha, String string) {
+        Util.addLabelToBox(modal, fecha);
+        Util.addLabelToBox(modal, string);
     }
 }

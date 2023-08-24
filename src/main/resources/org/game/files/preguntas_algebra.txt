@@ -1,0 +1,1 @@
+¿Qué es una transformación lineal?,1,Una función que cumple con la propiedad de linealidad y homogeneidad,Una función,Una función que cumple con la propiedad de linealidad y no homogeneidad,Una función que cumple con la propiedad de no linealidad y homogeneidad

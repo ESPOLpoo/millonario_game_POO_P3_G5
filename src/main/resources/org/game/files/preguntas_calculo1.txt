@@ -1,0 +1,4 @@
+¿Cuál es la derivada de x^2?,1,2x,x^2,x^3,x^4
+¿Quién inventó el Cálculo?,1,Isaac Newton,Albert Einstein,Stephen Hawking,Nikola Tesla
+¿Cuál es la derivada de 5x^3?,2,15x^2,15x^3,15x^4,15x^5
+¿Qué es la integral?,2,El área bajo la curva,La pendiente de la recta tangente,La velocidad instantánea,La distancia recorrida

@@ -1,0 +1,7 @@
+¿Qué es Java?,1,Un lenguaje de programación orientado a objetos,Un lenguaje de programación,Un lenguaje de programación funcional,Un lenguaje de programación multiparadigma
+¿Qué es un objeto?,1,Una instancia de una clase,Una clase,Un objeto,Un método
+¿Cuál es el alcance de una variable declarada dentro de un método en Java?,1,Variable local,Variable global,Variable de instancia,Variable estática
+¿Cuáles son los cuatro pilares de la programación orientada a objetos en Java?,2,Todas las anteriores,Abstracción,Encapsulación,Herencia
+¿Cuáles son los modificadores de acceso en Java?,2,Todas las anteriores,public y private,protected y default,abstract y synchronized
+¿Cuáles son algunas implementaciones de la interfaz Set en Java?,2,Todas las anteriores,ArrayList,LinkedList,HashSet
+

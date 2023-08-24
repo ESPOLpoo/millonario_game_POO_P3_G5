@@ -109,9 +109,9 @@ public class Pregunta implements Serializable, Comparable<Pregunta>, Extraible {
         return false;
     }
     
-    public static ArrayList<Pregunta> preguntasDefecto()throws IOException{
+    public static ArrayList<Pregunta> preguntasDefecto(String ruta)throws IOException{
         ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>();
-        BufferedReader reader = new BufferedReader(new FileReader(App.PATH+"preguntas.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(ruta));
         String line;
         while ((line = reader.readLine())!=null && !line.isEmpty()){
             String[] info = line.split(",");

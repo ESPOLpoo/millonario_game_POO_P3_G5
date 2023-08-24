@@ -74,7 +74,7 @@ public class MateriasController {
                 inputText.clear();
             }
             int index = materias.indexOf(materiaSeleccionada);
-            if (index>0){
+            if (index>=0){
                 
                 materiaSeleccionada.setParalelos(materias.get(index).getParalelos());
                 materiaSeleccionada.setPreguntas(materias.get(index).getPreguntas());

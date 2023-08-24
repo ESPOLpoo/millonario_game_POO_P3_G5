@@ -179,6 +179,7 @@ public class JuegoController {
                             correct.set(false);
                             Juego.addJuego(juego);
                             Platform.runLater(() -> Util.showInfo("Has perdido el juego", "Suerte para la próxima"));
+                            App.JUEGO = new Juego();
                             App.setRoot("primary");
                             break;
                         }
@@ -196,6 +197,7 @@ public class JuegoController {
                     correct.set(false);
                     Juego.addJuego(juego);
                     try {
+                        App.JUEGO = new Juego();
                         App.setRoot("primary");
                     } catch (
                             IOException e) {
@@ -226,6 +228,7 @@ public class JuegoController {
                     Juego.addJuego(juego);
 
                     try {
+                        App.JUEGO = new Juego();
                         App.setRoot("primary");
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);

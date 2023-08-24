@@ -7,6 +7,7 @@ package org.game;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -45,7 +46,6 @@ public class ParaleloController {
     private TablaSeleccion tabla;
     private Buscador buscador;
     private Paralelo paraleloSeleccionado;
-    
     @FXML
     private void initialize() throws Exception {
         //Muestra la tabla
@@ -130,5 +130,14 @@ public class ParaleloController {
         App.setRoot("estudiantes");
         }
         catch (ValidacionException e) {App.mostrarAlerta(Alert.AlertType.INFORMATION, e.getMessage());}
+    }
+
+    @FXML
+    private void aleatorio(ActionEvent event) {
+        Random random = new Random();
+        int randomIndex = random.nextInt(App.JUEGO.getMateria().getParalelos().size());
+        paraleloSeleccionado = App.JUEGO.getMateria().getParalelos().get(randomIndex);
+        seleccion.setText("Paralelo seleccionado: " + paraleloSeleccionado.getInfo().get(0));
+        App.JUEGO.setParalelo(paraleloSeleccionado);
     }
 }

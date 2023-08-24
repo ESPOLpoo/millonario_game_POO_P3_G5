@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -114,5 +115,14 @@ public class TerminosController {
         }
         catch (ValidacionException e) {App.mostrarAlerta(Alert.AlertType.INFORMATION, e.getMessage());}
         
+    }
+
+    @FXML
+    private void aleatorio(ActionEvent event) {
+        Random random = new Random();
+        int randomIndex = random.nextInt(terminos.size());
+        terminoSeleccionado = terminos.get(randomIndex);
+        seleccion.setText("Termino seleccionado: " + terminoSeleccionado.toString());
+        App.JUEGO.setTermino(terminoSeleccionado);
     }
 }

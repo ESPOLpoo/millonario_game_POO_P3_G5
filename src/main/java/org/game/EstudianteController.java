@@ -4,6 +4,7 @@ package org.game;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -37,8 +38,9 @@ public class EstudianteController {
     private TablaSeleccion tabla;
     private Buscador buscador;
     private Estudiante estudianteSeleccionado;
-
-    @FXML private void initialize() throws Exception {
+    
+    @FXML
+    private void initialize() throws Exception {
         //Muestra la tabla
         showInfo();
         
@@ -124,6 +126,19 @@ public class EstudianteController {
     @FXML
     private void seleccionarCompañero(ActionEvent event) {
         App.JUEGO.setCompañero(estudianteSeleccionado);
+    }
+
+    @FXML
+    private void aleatorio(ActionEvent event) {
+        Random random = new Random();
+        int randomIndex = random.nextInt(App.JUEGO.getParalelo().getEstudiantes().size());
+        estudianteSeleccionado = App.JUEGO.getParalelo().getEstudiantes().get(randomIndex);
+        App.JUEGO.setParticipante(estudianteSeleccionado);
+
+        randomIndex = random.nextInt(App.JUEGO.getParalelo().getEstudiantes().size());
+        estudianteSeleccionado = App.JUEGO.getParalelo().getEstudiantes().get(randomIndex);
+        App.JUEGO.setCompañero(estudianteSeleccionado);
+
     }
     
 }

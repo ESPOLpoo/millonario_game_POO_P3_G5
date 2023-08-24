@@ -4,6 +4,7 @@ package org.game;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -40,7 +41,6 @@ public class MateriasController {
     private TablaSeleccion tabla;
     private Buscador buscador;
     private Materia materiaSeleccionada = new Materia();
-    
     @FXML
     private void initialize() throws Exception {
         //Muestra la tabla
@@ -127,6 +127,16 @@ public class MateriasController {
         App.setRoot("paralelo");
         }
         catch (ValidacionException e) {App.mostrarAlerta(Alert.AlertType.INFORMATION, e.getMessage());}
+    }
+
+    @FXML
+    private void aleatorio(ActionEvent event) {
+        Random random = new Random();
+        int randomIndex = random.nextInt(materias.size());
+        materiaSeleccionada = materias.get(randomIndex);
+        seleccion.setText("Materia seleccionada: " + materiaSeleccionada.getInfo().get(0));
+        App.JUEGO.setMateria(materiaSeleccionada);
+
     }
     
 }

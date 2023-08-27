@@ -61,6 +61,24 @@ public class TerminoAcademico implements Serializable, Comparable<TerminoAcademi
     public void setNumeroTermino(int numeroTermino) { this.numeroTermino = numeroTermino; }
     public static void setTerminosAcademicos(ArrayList<TerminoAcademico> t){terminosAcademicos=t;}
 
+
+    public static TerminoAcademico getTermino(String termino) {
+        for (TerminoAcademico terminoAcademico : terminosAcademicos) {
+            if (terminoAcademico.toString().equals(termino)) {
+                return terminoAcademico;
+            }
+        }
+        return null;
+    }
+    public static TerminoAcademico getTermino(int year, int numeroTermino) {
+        for (TerminoAcademico terminoAcademico : terminosAcademicos) {
+            if (terminoAcademico.getYear() == year && terminoAcademico.getNumeroTermino() == numeroTermino) {
+                return terminoAcademico;
+            }
+        }
+        return null;
+    }
+
     public boolean equals(Object obj) {
         if (obj == null) return false;
 
@@ -73,13 +91,34 @@ public class TerminoAcademico implements Serializable, Comparable<TerminoAcademi
         return false;
     }
 
+    public static void ingresarTermino(int year, int numeroTermino){
+        TerminoAcademico termino = new TerminoAcademico(year, numeroTermino);
+        if (terminosAcademicos.contains(termino)) {
+            return;
+        }
+        terminosAcademicos.add(termino);
+    }
+
+    public void editarTermino(Integer year, Integer numeroTermino) {
+        if (year != null) {
+            this.setYear(year);
+        }
+        if (numeroTermino != null) {
+            this.setNumeroTermino(numeroTermino);
+        }
+    }
+    
     public void edit(Extraible e)throws ValidacionException{
        TerminoAcademico termino = (TerminoAcademico) e;
        e.validar();
        setYear(termino.getYear());
        setNumeroTermino(termino.getNumeroTermino());
     }
- 
+    
+    public static void configurarTermino(TerminoAcademico termino) {
+        terminoSeleccionado = termino;
+    }
+    
     public String toString(){
         return this.year + "-" + this.numeroTermino;
     }

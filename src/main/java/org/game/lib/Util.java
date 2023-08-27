@@ -35,7 +35,10 @@ public class Util {
         }
     }
 
-
+    public static void setButtonStyleClicked(Button button) {
+        button.setStyle("-fx-background-color: #FE9C33;");
+        button.setTextFill(Color.color(0, 0, 0));
+    }
 
     public static void setButtonStyleUnclicked(Button button) {
         button.setStyle("-fx-background-color: #042C7D;");
@@ -120,6 +123,21 @@ public class Util {
         alert.showAndWait();
     }
 
+    public static void addCellToGrid(GridPane grid, String text, int col, int row) {
+        Label content = new Label(text);
+        content.setTextFill(Color.color(1,1,1));
+        grid.add(content, col, row);
+    }
+
+    public static void removeModal(StackPane screen, VBox modal, Button button) {
+        screen.getChildren().remove(modal);
+        Util.setButtonStyleUnclicked(button);
+    }
+
+    public static void changeCellSize(GridPane grid, int col, int row, int width, int height) {
+        grid.getChildren().get(col + row * 5).setStyle("-fx-min-width: " + width + "px; -fx-min-height: " + height + "px; -fx-max-width: " + width + "px; -fx-max-height: " + height + "px; -fx-alignment: center;");
+    }
+    
     // Actualiza un archivo serializable
     public static void updateSer(Object obj, String ruta)throws IOException{
         ObjectOutputStream ser = new ObjectOutputStream(new FileOutputStream(ruta));

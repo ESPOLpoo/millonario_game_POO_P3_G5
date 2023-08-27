@@ -57,7 +57,7 @@ public class ReporteController {
                 VBox modal = Util.generateModal(screen, detalle, 1000, 1000);
                 Util.addShowableInfoToBox(modal, "Fecha", juego.getFecha().toString());
                 Util.addShowableInfoToBox(modal, "Participante", juego.getParticipante().getNombre());
-                Util.addShowableInfoToBox(modal, "Compañero", juego.getCompañero().getNombre());
+                Util.addShowableInfoToBox(modal, "Compañero", juego.getMateApoyo().getNombre());
                 Util.addShowableInfoToBox(modal, "Nivel máximo", String.valueOf(juego.getNivelMaximo()));
                 Util.addShowableInfoToBox(modal, "Tiempo", String.valueOf(juego.getTiempo()));
                 Util.addShowableInfoToBox(modal, "Premio", juego.getPremio());

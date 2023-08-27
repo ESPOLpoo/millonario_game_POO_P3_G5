@@ -22,25 +22,7 @@ public class Paralelo implements Serializable, Extraible, Comparable<Paralelo>{
         this.numero = numero;
         loadEstudiantes();
     }
-    public Paralelo(TerminoAcademico termino, Materia materia, int numero){
-        this.termino = termino;
-        this.materia = materia;
-        this.numero = numero;
-    }
 
-    public Paralelo(TerminoAcademico termino, Materia materia, int numero, ArrayList<Estudiante> estudiantes){
-        this(termino, materia, numero);
-        this.estudiantes = estudiantes;
-    }
-
-    public Paralelo(TerminoAcademico termino, Materia materia, int numero, String rutaArchivoEstudiantes) {
-        this.termino = termino;
-        this.materia = materia;
-        this.numero = numero;
-        this.rutaArchivoEstudiantes = rutaArchivoEstudiantes;
-        this.agregarEstudiantes();
-    }
-    
     public void loadEstudiantes()throws IOException{
         estudiantes.clear();
         BufferedReader reader = new BufferedReader(new FileReader(rutaArchivoEstudiantes));
@@ -51,33 +33,7 @@ public class Paralelo implements Serializable, Extraible, Comparable<Paralelo>{
         }
         Collections.sort(estudiantes);
     }
-    public void agregarEstudiantes() {
-        ArrayList<Estudiante> estudiantes = new ArrayList<>();
-        String ruta = Paths.get(".").toAbsolutePath().normalize() + "/src/main/resources/" + this.rutaArchivoEstudiantes;
-        try {
-            FileReader reader = new FileReader(ruta);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] data = line.split(",");
-                Estudiante estudiante = new Estudiante(data[0], data[1]);
-                estudiantes.add(estudiante);
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        this.setEstudiantes(estudiantes);
-    }
-
-    public static Paralelo getParalelo(TerminoAcademico terminoSeleccionado, Materia materia, int numero) {
-        for (Paralelo paralelo : paralelos) {
-            if (paralelo.equals(new Paralelo(terminoSeleccionado, materia, numero))) {
-                return paralelo;
-            }
-        }
-        return null;
-    }
+    
 
     public TerminoAcademico getTermino() {
         return termino;
@@ -133,15 +89,6 @@ public class Paralelo implements Serializable, Extraible, Comparable<Paralelo>{
         return estudiantes;
     }
 
-    public Estudiante getEstudiante(String matricula) {
-        for (Estudiante estudiante : estudiantes) {
-            if (estudiante.getMatricula().equals(matricula)) {
-                return estudiante;
-            }
-        }
-        return null;
-    }
-
     public void setEstudiantes(ArrayList<Estudiante> estudiantes) {
         this.estudiantes = estudiantes;
     }
@@ -152,18 +99,6 @@ public class Paralelo implements Serializable, Extraible, Comparable<Paralelo>{
 
     public void setRutaArchivoEstudiantes(String rutaArchivoEstudiantes) {
         this.rutaArchivoEstudiantes = rutaArchivoEstudiantes;
-    }
-
-    public static void ingresarParalelo(TerminoAcademico termino, Materia materia, int numero){
-        paralelos.add(new Paralelo(termino, materia, numero));
-    }
-
-    public static void ingresarParalelo(TerminoAcademico termino, Materia materia, int numero, String rutaArchivoEstudiantes){
-        paralelos.add(new Paralelo(termino, materia, numero, rutaArchivoEstudiantes));
-    }
-
-    public static void eliminarParalelo(Paralelo paralelo){
-        paralelos.remove(paralelo);
     }
 
     public String toString(){

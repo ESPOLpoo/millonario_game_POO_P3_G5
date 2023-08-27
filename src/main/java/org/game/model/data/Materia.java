@@ -126,95 +126,6 @@ public class Materia implements Serializable, Comparable<Materia>, Extraible{
         
     }
 
-    public static ArrayList<ArrayList<Pregunta>> agruparPorNivel(ArrayList<Pregunta> preguntas) {
-        ArrayList<ArrayList<Pregunta>> preguntasPorNivel = new ArrayList<>();
-        for (Pregunta pregunta : preguntas) {
-            int nivel = pregunta.getNivel();
-            if (preguntasPorNivel.size() < nivel) {
-                preguntasPorNivel.add(new ArrayList<Pregunta>());
-            }
-            preguntasPorNivel.get(nivel - 1).add(pregunta);
-        }
-        return preguntasPorNivel;
-    }
-
-    public static Pregunta getRandomPreguntaNivel(ArrayList<Pregunta> preguntas) {
-        int random = (int) (Math.random() * preguntas.size());
-        return preguntas.get(random);
-    }
-
-    public static void ingresarMateria(String codigo, String nombre, int niveles) {
-        materias.add(new Materia(codigo, nombre, niveles));
-    }
-
-    public static void ingresarMateria(Materia materia) {
-        materias.add(materia);
-    }
-
-    public void editarMateria(String codigo, String nombre, Integer niveles) {
-        if (codigo != null) {
-            this.codigo = codigo;
-        }
-        if (nombre != null) {
-            this.nombre = nombre;
-        }
-        if (niveles != null) {
-            this.niveles = niveles;
-        }
-    }
-
-    public static Materia getMateria(String codigo) {
-        for (Materia materia : materias) {
-            if (materia.getCodigo().equals(codigo)) {
-                return materia;
-            }
-        }
-        return null;
-    }
-
-    public static Materia getMateriaByNombre(String nombre) {
-        for (Materia materia : materias) {
-            if (materia.getNombre().equals(nombre)) {
-                return materia;
-            }
-        }
-        return null;
-    }
-
-    public Paralelo getParalelo(TerminoAcademico termino, Materia materia, int numero) {
-        for (Paralelo paralelo: paralelos) {
-            if (paralelo.equals(new Paralelo(termino, this, numero))) {
-                return paralelo;
-            }
-        }
-        return null;
-    }
-    public void agregarParalelo(Paralelo paralelo) {
-        paralelos.add(paralelo);
-    }
-
-    public void eliminarParalelo(Paralelo paralelo) {
-        paralelos.remove(paralelo);
-    }
-
-    public void agregarPregunta(Pregunta pregunta) {
-        preguntas.add(pregunta);
-        guardarPreguntaArchivo(pregunta);
-    }
-
-    public void guardarPreguntaArchivo(Pregunta pregunta) {
-        // CODIGO-MATERIA.csv
-        try {
-            FileOutputStream fos = new FileOutputStream(Paths.get(".").toAbsolutePath().normalize() + "/src/main/resources/" + this.codigo + ".dat", true);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(pregunta);
-            oos.flush();
-            oos.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    
     public static void loadBase(String ruta) throws IOException{
         materias.clear();
         BufferedReader reader = new BufferedReader(new FileReader(ruta+"materias.txt"));
@@ -237,12 +148,6 @@ public class Materia implements Serializable, Comparable<Materia>, Extraible{
         if (materia.getNombre().equals("ECUACIONES DIFERENCIALES")){return App.PATH+"preguntas_ecuaciones_diff.txt";}
         if (materia.getNombre().equals("ÁLGEBRA LINEAL")){return App.PATH+"preguntas_algebra.txt";}
         else{return App.PATH+"preguntas_poo.txt";}
-    }
-    
-    
-
-    public void eliminarPregunta(Pregunta pregunta) {
-        preguntas.remove(pregunta);
     }
 
     public String toString() {

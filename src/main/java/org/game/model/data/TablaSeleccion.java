@@ -55,8 +55,7 @@ public class TablaSeleccion extends FlowPane{
         tittleBox.getChildren().add(hb);
     }
     
-    private void cargarTabla(){
-        
+    private void cargarTabla(){  
     for (Extraible t: info){
             HBox hb = new HBox();
             for (int i=0; i<etiquetas.length ; i++){

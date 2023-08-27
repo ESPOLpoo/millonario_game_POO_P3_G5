@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="screen" style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.JuegoController">
+<StackPane fx:id="screen" style="-fx-pref-width: 1280; -fx-pref-height: 720;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.game.JuegoController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #1A212D;">
          <children>
@@ -34,8 +33,7 @@
                   </ImageView>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ProgressIndicator fx:id="chronometer" cacheShape="false" centerShape="false" prefHeight="85.0" prefWidth="82.0" progress="0.0" scaleShape="false" stylesheets="@../../css/style.css" />
-                        <Circle fx:id="circle" fill="#293243" radius="28.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                        <Circle fill="#1a212d" radius="100.0" stroke="#fe9c33" strokeType="INSIDE" strokeWidth="5.0" />
                         <Label fx:id="temporizadorLabel" text="0:42" textFill="WHITE">
                            <font>
                               <Font name="JetBrains Mono Regular" size="36.0" />

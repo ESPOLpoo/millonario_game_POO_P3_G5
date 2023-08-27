@@ -17,7 +17,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -25,9 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import org.game.lib.Util;
-import org.game.model.data.Chronometer;
 import org.game.model.logic.Comodin;
 import org.game.model.logic.Juego;
 import org.game.model.logic.Pregunta;
@@ -63,28 +60,12 @@ public class JuegoController {
     private boolean cincuentaDisabled = false;
     private boolean salonDisabled = false;
     private Juego juego;
-
-    @FXML private ProgressIndicator chronometer;
-    @FXML private Circle circle;
-    private Chronometer c;
     
     @FXML
     public void initialize() {
         juego = App.JUEGO;
         random = new Random();
         int cantidadPreguntasPorResolver = juego.getPreguntas().size();
-
-        chronometer.setProgress(0.55);
-        chronometer.setMinSize(190,190);
-        chronometer.setStyle("-fx-progress-color:#F2953B;");
-
-        circle.setScaleX(3.2);
-        circle.setScaleY(3.2);
-        circle.setLayoutY(-1);
-        circle.setFill(Color.rgb(41,50,67));
-
-        c = new Chronometer(chronometer);
-        c.start();
 
         for (int i = 0; i < cantidadPreguntasPorResolver; i++) {
             Label numeroPregunta = new Label(String.valueOf((cantidadPreguntasPorResolver - i)));
@@ -193,7 +174,6 @@ public class JuegoController {
                         } else if (correctlyAnswered) { // Sí se respondió correctamente
                             juego.getPreguntasContestadas().add(preguntaActual);
                             juego.setNivelMaximo(finalJ+1);
-                            c.restartProgress();
                             break;
                         } else { // Sí se respondió incorrectamente
                             correct.set(false);

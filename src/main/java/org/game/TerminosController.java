@@ -90,7 +90,6 @@ public class TerminosController {
             e.add(t);
         }
         String[] tittles = {"Terminos Disponibles", "Año", "Periodo"};
-        
         tabla = new TablaSeleccion(tittles, e,150);
         buscador = new Buscador(tabla);
         //Se implementa el evento clicked para seleccionar un termino académico

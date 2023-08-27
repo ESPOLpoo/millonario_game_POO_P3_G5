@@ -21,7 +21,7 @@ import org.game.model.logic.Juego;
  */
 public class App extends Application {
     public static String PATH = "src/main/resources/org/game/files/"; 
-    public static boolean SAVE = true;
+    public static boolean SAVE = false;
     public static String ERR_MSG = "Hubo un error inesperado. Tal vez sea una mala entrada de texto o un mal funcionamiento del programa :(";
     public static Juego JUEGO = new Juego();
     private static Scene scene;
